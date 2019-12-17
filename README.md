@@ -1,1 +1,1 @@
-projet4_blog_OC
+# Creation of a blog, for a novel writer
