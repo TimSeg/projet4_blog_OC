@@ -3,3 +3,7 @@
 
 #images
 public/images/
+
+# Dependencies php
+vendor/
+
