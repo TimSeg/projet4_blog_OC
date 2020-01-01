@@ -1,0 +1,14 @@
+{
+    "name": "timseg/projet4_blog_oc",
+    "description": "blog project for OpenClassrooms",
+    "require": {
+        "twig/twig": "^3.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tim",
+            "email": "47716619+TimSeg@users.noreply.github.com"
+        }
+    ]
+}
