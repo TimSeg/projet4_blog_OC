@@ -4,11 +4,12 @@
     "require": {
         "twig/twig": "^3.0"
     },
+    "version": "0.1.0",
     "license": "MIT",
     "authors": [
         {
-            "name": "Tim",
-            "email": "47716619+TimSeg@users.noreply.github.com"
+            "name": "Timothee Segard",
+            "email": "segard.timothee@gmail.com"
         }
     ]
 }
