@@ -4,6 +4,8 @@
 #images
 public/images/
 
+public/node_modules/
+
 # Dependencies php
 vendor/
 

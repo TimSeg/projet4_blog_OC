@@ -1,0 +1,20 @@
+{
+  "name": "timseg/projet4_blog_oc",
+  "description": "blog project for OpenClassrooms",
+  "keywords": [
+    "web",
+    "application",
+    "php",
+    "mvc"
+  ],
+  "license": "MIT",
+  "main": "index.php",
+  "repository": "github:TimSeg/projet4_blog_OC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2"
+  },
+  "author": {
+    "name": "Timothée Segard",
+    "email": "segard.timothee@gmail.com"
+  }
+}
