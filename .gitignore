@@ -9,3 +9,10 @@ public/node_modules/
 # Dependencies php
 vendor/
 
+
+# DB Datas (UNCOMMENT THE FILE WHEN START USING TEMPLATE)
+# config/db.sql
+
+# Database Connection Informations (UNCOMMENT THE FILE WHEN START USING TEMPLATE)
+#config/db.php
+
