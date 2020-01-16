@@ -1,11 +1,20 @@
 {
     "name": "timseg/projet4_blog_oc",
+    "version": "0.1.1",
     "description": "blog project for OpenClassrooms",
-    "require": {
-        "twig/twig": "^3.0"
-    },
-    "version": "0.1.0",
     "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "twig/twig": "^3.0",
+        "ext-pdo": "*"
+    },
+    "require-dev": {
+        "tracy/tracy": "^2.7"
+    },
     "authors": [
         {
             "name": "Timothee Segard",
