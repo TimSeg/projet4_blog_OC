@@ -4,7 +4,7 @@
 define('DB_DSN', 'mysql:host=localhost;dbname=blog_p4oc');
 
 /* You need to replace root with the user name of the database */
-define('DB_USER', '');
+define('DB_USER', 'root');
 
 /* You need to add the user password of the database
 WARNING : Add this file name to.gitignore file before adding the password */
