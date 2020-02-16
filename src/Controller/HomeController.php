@@ -21,11 +21,17 @@ class HomeController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function defaultMethod()
+    public function homeMethod()
     {
-        return $this->render('home.twig');
-        $allUsers = ModelFactory::getModel('User')->listData();
+        $lastPost = ModelFactory::getModel('Posts')->listData();
 
-        return $this->render('home.twig', ['allUsers' => $allUsers]);
+        return $this->twig->render('home.twig', ['posts' => $lastPost]);
     }
+
+
+
+
+
+
+
 }

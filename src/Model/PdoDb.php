@@ -1,20 +1,24 @@
 <?php
+
 namespace App\Model;
+
 use PDO;
+
 /**
- * Class PDOModel
+ * Class PdoDb
  * Prepares Queries before execution & return
  * @package App\Model
  */
-class PDOModel
+class PdoDb
 {
     /**
      * PDO Connection
      * @var PDO
      */
-    private $pdo;
+    private $pdo = null;
+
     /**
-     * PDOModel constructor
+     * PdoDb constructor
      * Receive the PDO Connection & store it
      * @param PDO $pdo
      */
@@ -22,6 +26,7 @@ class PDOModel
     {
         $this->pdo = $pdo;
     }
+
     /**
      * Returns a unique result from the Database
      * @param string $query
@@ -32,8 +37,10 @@ class PDOModel
     {
         $PDOStatement = $this->pdo->prepare($query);
         $PDOStatement->execute($params);
+
         return $PDOStatement->fetch();
     }
+
     /**
      * Returns many results from the Database
      * @param string $query
@@ -44,8 +51,10 @@ class PDOModel
     {
         $PDOStatement = $this->pdo->prepare($query);
         $PDOStatement->execute($params);
+
         return $PDOStatement->fetchAll();
     }
+
     /**
      * Executes an action to the Database
      * @param string $query
@@ -55,6 +64,7 @@ class PDOModel
     public function setData(string $query, array $params = [])
     {
         $PDOStatement = $this->pdo->prepare($query);
+
         return $PDOStatement->execute($params);
     }
 }

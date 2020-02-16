@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS blog_p4oc;
+ DROP DATABASE IF EXISTS blog_p4oc;
 CREATE DATABASE blog_p4oc CHARACTER SET 'utf8';
 
 USE blog_p4oc;
