@@ -11,8 +11,8 @@ vendor/
 
 
 # DB Datas (UNCOMMENT THE FILE WHEN START USING TEMPLATE)
-# config/db.sql
+config/db.sql
 
 # Database Connection Informations (UNCOMMENT THE FILE WHEN START USING TEMPLATE)
-#config/db.php
+config/db.php
 

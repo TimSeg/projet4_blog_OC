@@ -1,6 +1,6 @@
 {
     "name": "timseg/projet4_blog_oc",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "blog project for OpenClassrooms",
     "license": "MIT",
     "autoload": {
@@ -9,8 +9,8 @@
         }
     },
     "require": {
-        "twig/twig": "^3.0",
-        "ext-pdo": "*"
+        "twig/twig": "^3.0"
+
     },
     "require-dev": {
         "tracy/tracy": "^2.7"
