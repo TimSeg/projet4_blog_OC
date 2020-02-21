@@ -121,4 +121,12 @@ abstract class MainModel
 
         $this->database->setData($query, [$value]);
     }
+
+
+
+
+
+
+
+
 }
