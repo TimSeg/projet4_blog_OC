@@ -29,14 +29,17 @@ class PostsModel extends MainModel
         $req = PDOFactory::getPDO()->prepare('UPDATE Posts SET title = ? , content = ? WHERE id = ?');
         $req->execute(array($title,$content,$id));
     }
-
-
-
-
-
+/*
     public function getLastPost()
     {
-        $req = PDOFactory::getPDO()->prepare('SELECT id, title, content, DATE_FORMAT(created_date, \'%d/%m/%Y\') AS created_date FROM posts  ORDER BY id DESC LIMIT 1');
+        $req = PDOFactory::getPDO()->prepare('SELECT id, title, content, FROM posts ORDER BY id DESC LIMIT 1');
+        return $req->execute(array($title,$content,$id));
+
+    }
+*/
+    public function getLastPost()
+    {
+        $req = PDOFactory::getPDO()->prepare('SELECT id, title, content, DATE_FORMAT(created_date, \'%d/%m/%Y\') AS created_date FROM posts ORDER BY id DESC LIMIT 1');
         $req->execute();
         $lastPost = $req->fetch();
 
