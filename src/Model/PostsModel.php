@@ -37,7 +37,7 @@ class PostsModel extends MainModel
      * @return array|mixed
      */
 
-    public function getLastPost(string $value = null, string $key = null)
+    public function getLastPost()
     {
         $query = 'SELECT * FROM posts ORDER BY id DESC LIMIT 1';
 
