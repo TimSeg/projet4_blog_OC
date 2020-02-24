@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Model\Factory\ModelFactory;
+use App\Model\Factory\PdoFactory;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -22,11 +23,12 @@ class HomeController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function homeMethod()
+    public function launchMethod()
     {
-        $lastPost = ModelFactory::getModel('Posts')->getLastPost();
 
+        $lastPost = ModelFactory::getModel('Posts')->getLastpost();
         return $this->twig->render('home.twig', ['posts' => $lastPost]);
+
     }
 
 

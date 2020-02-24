@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+
+
 /**
  * Class MainModel
  * Creates Queries for CRUD
@@ -50,6 +52,10 @@ abstract class MainModel
 
         return $this->database->getAllData($query);
     }
+
+
+
+
 
     /**
      * Creates a new Data entry
@@ -121,11 +127,6 @@ abstract class MainModel
 
         $this->database->setData($query, [$value]);
     }
-
-
-
-
-
 
 
 

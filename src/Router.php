@@ -24,7 +24,7 @@ class Router
     /**
      * By Default launch method
      */
-    const LAUNCH_METHOD        = 'homeMethod';
+    const LAUNCH_METHOD        = 'launchMethod';
 
     /**
      * @var null
@@ -74,7 +74,7 @@ class Router
         $access = filter_input(INPUT_GET, 'access');
 
         if (!isset($access)) {
-            $access = 'home';
+            $access = 'launch';
         }
 
         $access = explode('!', $access);
