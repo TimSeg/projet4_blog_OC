@@ -1,0 +1,24 @@
+{% extends 'layout/layout.twig' %}
+
+{% block description %}
+
+{% endblock %}
+
+{% block title %} Tous les chapitres déjà publiés {% endblock %}
+
+{% block content %}
+    <h2>Voici mes chapitres </h2>
+    <article>
+        <table>
+            <tbody>
+            {% for post in posts %}
+                <tr>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.content | nl2br }}</td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </article>
+{% endblock %}

@@ -14,10 +14,21 @@ use Twig\Error\SyntaxError;
 
 class PostController extends MainController
 {
+    /**
+     * Renders the View Home
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function launchMethod()
+    {
 
+        var_dump($posts);
+        $posts = ModelFactory::getModel('Posts')->listData();
 
-
-
+        return $this->twig->render('post.twig', ['posts' => $posts]);
+    }
 
 
 
