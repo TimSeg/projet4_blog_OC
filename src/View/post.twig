@@ -1,24 +1,30 @@
 {% extends 'layout/layout.twig' %}
 
-{% block description %}
+{% block title %}Tous les chapitres publiés{% endblock %}
 
-{% endblock %}
+{% block description %}Billet simple pour l'Alaska - Jean Forteroche{% endblock %}
 
-{% block title %} Tous les chapitres déjà publiés {% endblock %}
+{% block main %}
+    <main id="home">
+        <section>
+            <h2>Le roman en cours</h2>
 
-{% block content %}
-    <h2>Voici mes chapitres </h2>
-    <article>
-        <table>
-            <tbody>
-            {% for post in posts %}
-                <tr>
-                    <td>{{ post.title }}</td>
-                    <td>{{ post.content | nl2br }}</td>
+            <p>Sur cette page, vous trouverez l'ensemble des chapitres déjà publiés.</p>
+            <p>Pour pouvoir commenter les publications : <a href="">inscrivez-vous / identifiez-vous ici</a>.</p>
 
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </article>
+        </section>
+
+        <section>
+            <h2>Billet simple pour l'Alaska</h2>
+
+
+            <div>
+                {% for post in posts %}
+
+                    <p> {{ post.title }} <br>{{ post.content | nl2br }} </p>
+
+                {% endfor %}
+            </div>
+        </section>
+    </main>
 {% endblock %}
