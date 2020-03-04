@@ -1,10 +1,19 @@
 <nav>
     <ul>
+
+        {% block navbar %}
         <li>
             <a href="index.php?access=home" accesskey="h" title="Home">
                 <i class="fas fa-home fa-fw fa-3x" aria-hidden="true"></i>
             </a>
         </li>
+
+        <li>
+            <a href= "index.php?access=post" title="Tout les chapitres"><i class="fas fa-book-open"></i> Chapitres</a>
+        </li>
+
+
+        {% endblock %}
 
     </ul>
 </nav>

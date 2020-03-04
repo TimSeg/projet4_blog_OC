@@ -1,6 +1,6 @@
 {% extends 'layout/layout.twig' %}
 
-{% block subtitle %}Accueil{% endblock %}
+{% block title %}Jean Forteroche - Billet simple pour l'Alaska{% endblock %}
 
 {% block description %}Blog - Jean Forteroche{% endblock %}
 
@@ -21,7 +21,7 @@
             <div>
                 {% for post in posts %}
 
-                    <p> {{ post.title }} <br> {{ post.content | nl2br }} </p>
+                    <p> {{ post.title }} <br>{{ post.content | nl2br }} </p>
 
                 {% endfor %}
             </div>
