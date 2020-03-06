@@ -29,6 +29,8 @@ class HomeController extends MainController
         $lastPost = ModelFactory::getModel('Posts')->getLastpost();
         return $this->twig->render('home.twig', ['posts' => $lastPost]);
 
+
+
     }
 
 

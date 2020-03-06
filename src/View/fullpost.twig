@@ -1,0 +1,18 @@
+{% extends 'layout/layout.twig' %}
+
+
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block main %}
+    <h2>Lecture du chapitre</h2>
+
+    {% for post in posts %}
+
+    <article>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content | nl2br }}</p>
+    </article>
+    {% endfor %}
+
+{% endblock %}
