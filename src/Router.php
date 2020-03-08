@@ -1,9 +1,11 @@
 <?php
 namespace App;
 
+use App\Controller\Extension\AdditionalExtension;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
+
 
 /**
  * Class Router
@@ -116,5 +118,10 @@ class Router
         $response = call_user_func([$this->controller, $this->method]);
 
         echo filter_var($response);
+
+
+
+
+
     }
 }

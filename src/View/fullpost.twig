@@ -15,4 +15,11 @@
     </article>
     {% endfor %}
 
+    {% for comment in comments %}
+
+    <p>Écrit par : <span>{{ comment.author }}</span>, le <span>{{ comment.created_date }}</span></p>
+    <p>{{ comment.content | nl2br}}</p>
+
+    {% endfor %}
+
 {% endblock %}
