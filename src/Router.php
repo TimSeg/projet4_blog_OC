@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-use App\Controller\Extension\AdditionalExtension;
+
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;

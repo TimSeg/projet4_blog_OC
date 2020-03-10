@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Model\Factory\ModelFactory;
-use App\Controller\Extension\AdditionalExtension;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -30,6 +29,9 @@ class PostController extends MainController
 
         return $this->twig->render('post.twig', ['posts' => $posts]);
     }
+
+
+
 
 
 
