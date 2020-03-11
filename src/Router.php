@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-
+use App\Controller\Extension\PhpAdditionalExtension;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
@@ -65,6 +65,7 @@ class Router
         ));
 
         $this->twig->addExtension(new DebugExtension());
+        $this->twig->addExtension(new PhpAdditionalExtension());
 
     }
 
@@ -76,7 +77,7 @@ class Router
         $access = filter_input(INPUT_GET, 'access');
 
         if (!isset($access)) {
-            $access = 'launch';
+            $access = 'home';
         }
 
         $access = explode('!', $access);

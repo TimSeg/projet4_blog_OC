@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Controller\Extension\PhpAdditionalExtension;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -23,7 +24,11 @@ abstract class MainController
      */
     public function __construct()
     {
-        $this->twig = new Environment(new FilesystemLoader('../src/View'), array('cache' => false));
+        $this->twig = new Environment(new FilesystemLoader('../src/View'), array('cache' => false,));
+
+
+        $this->twig->addExtension(new PhpAdditionalExtension());
+
     }
 
     /**

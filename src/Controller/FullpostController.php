@@ -13,7 +13,6 @@ use Twig\Error\SyntaxError;
  */
 class FullpostController extends MainController
 {
-
     /**
      * @return string
      * @throws LoaderError
@@ -47,10 +46,6 @@ class FullpostController extends MainController
             'comments' => $comments
         ]);
     }
-
-
-
-
 
 
 
