@@ -31,5 +31,4 @@ class PostController extends MainController
     }
 
 
-
 }

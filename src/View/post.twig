@@ -21,7 +21,9 @@
             <div>
                 {% for post in posts %}
 
-                    <p> {{ post.title }} <br>{{ post.content | nl2br }} </p>
+                    <p> {{ post.title }} <br>{{ post.content | nl2br }} <br>
+                        <a href="{{ url('fullpost!read', {'id': post.id}, {'id': comment.post_id}) }}">Lire/Commenter ce chapitre</a>
+                    </p>
 
                 {% endfor %}
             </div>

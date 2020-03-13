@@ -1,0 +1,24 @@
+{% extends 'layout/layout.twig' %}
+
+
+
+
+{% block main %}
+    <h2>Lecture du chapitre</h2>
+
+
+
+    <article>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content | nl2br }}</p>
+    </article>
+
+
+    {% for comment in comments %}
+
+    <p>Écrit par : <span>{{ comment.author }}</span>, le <span>{{ comment.created_date }}</span></p>
+    <p>{{ comment.content | nl2br}}</p>
+
+    {% endfor %}
+
+{% endblock %}
