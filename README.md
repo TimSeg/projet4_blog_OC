@@ -3,4 +3,3 @@
 1.Creation of the blog using PHP as server language and MySQL as database  
 2.Blog is based on a CRUD interface for the admin  
 3.Use of OOP as possible  
-
