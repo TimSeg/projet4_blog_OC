@@ -1,0 +1,72 @@
+{% extends "layout/layout.twig" %}
+
+
+{% block description %}
+
+{% endblock %}
+
+{% block content %}
+    <ul>
+
+        <input id="radio-signup" class="hide" name="sign" type="radio">
+        <input id="radio-signin" class="hide" name="sign" type="radio" checked>
+
+        <label for="radio-signin" class="sign-in"> Connexion au site </label>
+        <label for="radio-signup" class="sign-up"> Inscription </label>
+
+
+        <li id="signin">
+            <form class="form" action="{{ url('login!launch') }}" method="post" enctype="multipart/form-data">
+                <fieldset>
+                    <legend><i class="fas fa-unlock-alt"></i> Connexion à l'Administration</legend>
+                    <ul>
+                        <li>
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="Email" required>
+                        </li>
+                        <li>
+                            <label for="pass">Mot de passe</label>
+                            <input id="pass" name="pass" type="password" placeholder="Mot de passe" autocomplete="off" required>
+                        </li>
+                        <li>
+                            <button type="submit">Connexion</button>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+        </li>
+
+        <li id="signup">
+            <form class="form" action="{{ url('admin!create') }}" method="post" enctype="multipart/form-data">
+                <fieldset>
+                    <legend><i class="fas fa-fingerprint"></i> Inscription </legend>
+                    <ul>
+                        <li>
+                            <label for="first_name">Prénom</label>
+                            <input id="first_name" name="first_name" type="text" placeholder="Prénom" required>
+                        </li>
+                        <li>
+                            <label for="last_name">Nom</label>
+                            <input id="last_name" name="last_name" type="text" placeholder="Nom" required>
+                        </li>
+                        <li>
+                            <label for="nickname">Pseudo affiché</label>
+                            <input id="nickname" name="nickname" type="text" placeholder="Pseudo" required>
+                        </li>
+                        <li>
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="Votre adresse email" required>
+                        </li>
+                        <li>
+                            <label for="pass">Mot de passe</label>
+                            <input id="pass" name="pass" type="password" placeholder="Mot de passe" autocomplete="off" required>
+                        </li>
+                        <li>
+                            <button type="submit" name="signup">S'inscrire</button>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+        </li>
+    </ul>
+{% endblock %}
