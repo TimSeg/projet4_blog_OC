@@ -11,7 +11,7 @@ use Twig\Error\SyntaxError;
  * Class CommentsController
  * @package App\Controller
  */
-class CommentsController extends MainController
+class CommentController extends MainController
 {
 
 }

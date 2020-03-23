@@ -16,6 +16,18 @@ class LoginController extends MainController
 {
 
     /**
+     * @var mixed|null
+     */
+    protected $session = null;
+
+    /**
+     * @var mixed
+     */
+    private $user = null;
+
+
+
+    /**
      * @return bool
      */
     public function isLogged()
@@ -53,16 +65,14 @@ class LoginController extends MainController
      * @param string $password
      * @param string $status
      */
-    public function sessionCreate(int $id, string $first_name, string $last_name, string $nickname, string $email, string $password,string $status)
+    public function sessionCreate(int $id, string $name, string $email, string $password,string $role)
     {
         $_SESSION['users'] = [
             'id'          => $id,
-            'first_name'  => $first_name,
-            'last_name'   => $last_name,
-            'nickname'    => $nickname,
+            'name'        => $name,
             'email'       => $email,
             'pass'        => $password,
-            'status'      => $status
+            'role'        => $role
         ];
     }
 
@@ -81,26 +91,24 @@ class LoginController extends MainController
     public function launchMethod()
     {
         if (!empty($this->post['email']) && !empty($this->post['pass'])) {
-            $user = ModelFactory::getModel('Admin')->readData($this->post['email'], 'email');
+            $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
 
             if (password_verify($this->post['pass'], $user['pass'])) {
                 $this->sessionCreate(
                     $user['id'],
-                    $user['first_name'],
-                    $user['last_name'],
-                    $user['nickname'],
+                    $user['name'],
                     $user['email'],
                     $user['pass'],
-                    $user['status']
+                    $user['role']
                 );
-                if($this->getUserVar('status') === 'admin')
+                if($this->getUserVar('role') === 'admin')
                 {
                     $this->redirect('admin');
                 }
                 $this->redirect('home');
             }
         }
-        if($this->getUserVar('status') === 'admin')
+        if($this->getUserVar('role') === 'admin')
         {
             $this->redirect('admin');
         }
@@ -108,9 +116,7 @@ class LoginController extends MainController
         {
             $this->redirect('admin');
         }
-        elseif ($this->getUserVar('status') === 'visitor') {
-            $this->redirect('home');
-        }
+        
         return $this->twig->render('login.twig');
     }
 
