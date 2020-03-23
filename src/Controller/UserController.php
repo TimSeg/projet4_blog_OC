@@ -15,7 +15,4 @@ use Twig\Error\SyntaxError;
 class UserController extends MainController
 {
 
-
-
-
 }

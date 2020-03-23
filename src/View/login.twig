@@ -1,32 +1,26 @@
 {% extends "layout/layout.twig" %}
 
 
-{% block description %}
 
-{% endblock %}
-
-{% block content %}
+{% block main %}
     <ul>
 
-        <input id="radio-signup" class="hide" name="sign" type="radio">
-        <input id="radio-signin" class="hide" name="sign" type="radio" checked>
-
-        <label for="radio-signin" class="sign-in"> Connexion au site </label>
-        <label for="radio-signup" class="sign-up"> Inscription </label>
 
 
         <li id="signin">
+
+            <h3>Vous avez déjà un compte :</h3>
             <form class="form" action="{{ url('login!launch') }}" method="post" enctype="multipart/form-data">
                 <fieldset>
-                    <legend><i class="fas fa-unlock-alt"></i> Connexion à l'Administration</legend>
+                    <legend><i class="fas fa-unlock-alt"></i> Connexion à votre espace</legend>
                     <ul>
                         <li>
                             <label for="email">Email</label>
-                            <input id="email" name="email" type="email" placeholder="Email" required>
+                            <input id="email" name="email" type="email" placeholder="E-mail" required>
                         </li>
                         <li>
                             <label for="pass">Mot de passe</label>
-                            <input id="pass" name="pass" type="password" placeholder="Mot de passe" autocomplete="off" required>
+                            <input id="pass" name="pass" type="password" placeholder="mot de passe" autocomplete="off" required>
                         </li>
                         <li>
                             <button type="submit">Connexion</button>
@@ -36,37 +30,25 @@
             </form>
         </li>
 
-        <li id="signup">
-            <form class="form" action="{{ url('admin!create') }}" method="post" enctype="multipart/form-data">
+        <li><h3>Vous souhaitez créer un nouveau compte :</h3>
+            <form class="form" action="" method="post" enctype="multipart/form-data">
                 <fieldset>
-                    <legend><i class="fas fa-fingerprint"></i> Inscription </legend>
+                    <legend><i class="fas fa-unlock-alt"></i> Créer votre espace membre</legend>
                     <ul>
                         <li>
-                            <label for="first_name">Prénom</label>
-                            <input id="first_name" name="first_name" type="text" placeholder="Prénom" required>
-                        </li>
-                        <li>
-                            <label for="last_name">Nom</label>
-                            <input id="last_name" name="last_name" type="text" placeholder="Nom" required>
-                        </li>
-                        <li>
-                            <label for="nickname">Pseudo affiché</label>
-                            <input id="nickname" name="nickname" type="text" placeholder="Pseudo" required>
-                        </li>
-                        <li>
                             <label for="email">Email</label>
-                            <input id="email" name="email" type="email" placeholder="Votre adresse email" required>
+                            <input id="email" name="email" type="email" placeholder="exemple@exemple.com" required>
                         </li>
                         <li>
                             <label for="pass">Mot de passe</label>
-                            <input id="pass" name="pass" type="password" placeholder="Mot de passe" autocomplete="off" required>
+                            <input id="pass" name="pass" type="password" placeholder="chiffres et lettres" autocomplete="off" required>
                         </li>
                         <li>
-                            <button type="submit" name="signup">S'inscrire</button>
+                            <button type="submit">Enregistrer</button>
                         </li>
                     </ul>
                 </fieldset>
-            </form>
-        </li>
+            </form></li>
+
     </ul>
 {% endblock %}

@@ -14,6 +14,7 @@ use Twig\Error\SyntaxError;
 
 class PostController extends MainController
 {
+
     /**
      * Renders the View Home
      * @return string
@@ -29,6 +30,7 @@ class PostController extends MainController
 
         return $this->twig->render('post.twig', ['posts' => $posts]);
     }
+
 
 
 }
