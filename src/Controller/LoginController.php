@@ -18,13 +18,23 @@ class LoginController extends MainController
     /**
      * @var mixed|null
      */
-    protected $session = null;
+    private $session = null;
 
     /**
      * @var mixed
      */
     private $user = null;
 
+
+    /**
+     * @var mixed
+     */
+    protected $post = null;
+
+    /**
+     * @var mixed
+     */
+    protected $get = null;
 
 
     /**
@@ -54,16 +64,24 @@ class LoginController extends MainController
     }
 
 
+    /**
+     * @return void
+     */
+    public function sessionDestroy()
+    {
+        $_SESSION['users'] = [];
+    }
+
+
+
 
 
     /**
      * @param int $id
-     * @param string $first_name
-     * @param string $last_name
-     * @param string $nickname
+     * @param string $name
      * @param string $email
      * @param string $password
-     * @param string $status
+     * @param string $role
      */
     public function sessionCreate(int $id, string $name, string $email, string $password,string $role)
     {
@@ -116,9 +134,16 @@ class LoginController extends MainController
         {
             $this->redirect('admin');
         }
-        
+
         return $this->twig->render('login.twig');
+
+
+
+
     }
+
+
+
 
     /**
      * @return string
@@ -131,6 +156,10 @@ class LoginController extends MainController
         $this->sessionDestroy();
         $this->redirect('home');
     }
+
+
+
+
 
 
 }

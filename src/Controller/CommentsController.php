@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 use App\Model\Factory\ModelFactory;
@@ -9,10 +8,10 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 /**
- * Class UserController
+ * Class CommentsController
  * @package App\Controller
  */
-class UserController extends MainController
+class CommentsController extends MainController
 {
 
 }

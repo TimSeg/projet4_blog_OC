@@ -10,7 +10,7 @@
         <li id="signin">
 
             <h3>Vous avez déjà un compte :</h3>
-            <form class="form" action="{{ url('login!launch') }}" method="post" enctype="multipart/form-data">
+            <form class="form" action="{{ url('login') }}" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend><i class="fas fa-unlock-alt"></i> Connexion à votre espace</legend>
                     <ul>
@@ -31,10 +31,17 @@
         </li>
 
         <li><h3>Vous souhaitez créer un nouveau compte :</h3>
-            <form class="form" action="" method="post" enctype="multipart/form-data">
+            <form class="form" action="{{ url('admin!create') }}" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend><i class="fas fa-unlock-alt"></i> Créer votre espace membre</legend>
                     <ul>
+
+                        <li>
+                            <label for="name">Votre nom</label>
+                            <input id="name" name="name" type="text" placeholder="Votre nom" required>
+                        </li>
+
+
                         <li>
                             <label for="email">Email</label>
                             <input id="email" name="email" type="email" placeholder="exemple@exemple.com" required>

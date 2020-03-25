@@ -9,7 +9,7 @@ use App\Model\Factory\PDOFactory;
  * Manages Comments Data
  * @package App\Model
  */
-class CommentModel extends MainModel
+class CommentsModel extends MainModel
 {
 
 
