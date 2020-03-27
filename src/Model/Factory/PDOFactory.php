@@ -9,7 +9,7 @@ use PDO;
  * Creates the Connection if it doesn't exist
  * @package App\Model
  */
-class PdoFactory
+class PDOFactory
 {
     /**
      * Stores the Connection

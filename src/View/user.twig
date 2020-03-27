@@ -1,0 +1,161 @@
+{% extends "layout/layout.twig" %}
+
+{% block content %}
+    {% if session.users.status is defined and session.users.status === 'admin' %}
+        <!-- Administrator connected -->
+        <h2 id="top">Panneau de contrôle :</h2>
+
+        <header class="admin-absolut">
+            <h3>Navigation</h3>
+
+            <nav>
+                <ul>
+                    <li><a href="#chapters"><i class="fas fa-book"></i> Vers les chapitres</a></li>
+                    <li><a href="#comments"><i class="fas fa-comments"></i> Vers les commentaires signalés</a></li>
+                    <li><a href="#users"><i class="fas fa-user"></i> Vers les utilisateurs</a></li>
+                    <li><a href="#footer">Descendre <i class="fas fa-level-down-alt"></i></a> - <a href="#top">Remonter <i class="fas fa-level-up-alt"></i></a></li>
+                </ul>
+            </nav>
+        </header>
+
+
+        <article>
+            <h3>Création d'un article</h3>
+
+            <form method="post" action="{{ url('post!create') }}" enctype="multipart/form-data">
+                <ul>
+                    <li>
+                        <label for="title">Titre</label>
+                        <input id="title" type="text" name="title" placeholder="Titre">
+                    </li>
+
+                    <li>
+                        <label for="content">Contenu du chapitre</label>
+                        <textarea name="content" id="content"></textarea>
+                    </li>
+
+                    <li>
+                        <button type="submit">Créer</button>
+                    </li>
+                </ul>
+            </form>
+        </article>
+
+        <article class="admin-section">
+            <h3 id="chapters">Espace de gestion des chapitres créés</h3>
+
+            <table>
+                <caption>Recensement des chapitres</caption>
+                <thead>
+                <tr>
+                    <th scope="col">Titre du chapitre</th>
+                    <th scope="col">Editer / Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ post.title }}</td>
+                        <td>
+                            <a href="{{ url('post!modify', {'id': post.id}, {'id': comment.post_id}) }}">
+                                <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                            </a>
+                            <a href="{{ url('post!delete', {'id': post.id}) }}">
+                                <i class="fas fa-times-circle fa-fw fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <h3 id="comments">Espace de gestion des commentaires créés</h3>
+
+            <table>
+                <caption>Commentaires signalés<i class="fas fa-exclamation-triangle"></i></caption>
+                <thead>
+                <tr>
+                    <th scope="col">Auteur</th>
+                    <th scope="col">Contenu</th>
+                    <th scope="col">Poster / Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for comment in comments %}
+                    {% if comment.reported == 1 %}
+                        <tr>
+                            <td>{{ comment.author }} </td>
+                            <td>{{ comment.content | nl2br }} </td>
+                            <td><a href="{{ url('comments!notreported', {'id': comment.id}) }}">Poster</a></td>
+                            <td><a class="btn-delete" href="#">Supprimer<i class="fas fa-times-circle fa-fw fa-lg"></i></a></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <h3 id="users">Espace de gestion des utilisateurs créés</h3>
+
+            <table>
+                <caption>Tableau des utilisateurs</caption>
+                <thead>
+                <tr>
+                    <th scope="col">nom affiché</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Gestion / <a href="{{ url('user!create') }}"><i class="fas fa-user-plus fa-fw fa-lg"></i></a></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.status }}</td>
+                        <td>
+                            <a href="{{ url('user!modify', {'id': user.id}) }}">
+                                <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                            </a>
+                            <a href="{{ url('user!delete', {'id': user.id}) }}">
+                                <i class="fas fa-times-circle fa-fw fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </article>
+
+    {% else %}
+        <!-- Member connected -->
+        <h2>Paramètres personnels</h2>
+
+        <article>
+            <h3>Bienvenue dans votre espace utilisateur {{ session.users.name }}</h3>
+            <p>Pour modifier vos informations personnelles, utilisez le formulaire ci dessous.</p>
+
+            <fieldset>
+                <legend><i class="fas fa-pen-square fa-fw fa-lg"></i> Edition</legend>
+                <form action="{{ url('user!useredit', {'id': session.users.id }) }}" method="post">
+                    <ul>
+
+                        <li>
+                            <label for="name">nom affiché</label>
+                            <input id="name" type="text" name="name" value="{{ session.users.name }}" required>
+                        </li>
+
+                        <li>
+                            <label for="email">Email</label>
+                            <input id="email" type="email" name="email" value="{{ session.users.email }}" required>
+                        </li>
+
+                        <li>
+                            <input type="reset" value="Valeurs par défaut">
+                            <input type="submit" value="Mettre à jour">
+                        </li>
+                    </ul>
+                </form>
+            </fieldset>
+        </article>
+    {% endif %}
+{% endblock %}

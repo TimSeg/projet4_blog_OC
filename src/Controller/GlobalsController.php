@@ -5,6 +5,8 @@ namespace App\Controller;
 
 
 
+
+
 /**
  * Class GlobalsController
  * @package App\Controller
@@ -77,7 +79,7 @@ abstract class GlobalsController
      */
     public function isLogged()
     {
-        if (array_key_exists('users', $this->session)) {
+        if (array_key_exists('users', [$this->session])) {
             if (!empty($this->user)) {
                 return true;
             }
