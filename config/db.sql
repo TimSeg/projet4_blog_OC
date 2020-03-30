@@ -3,7 +3,7 @@ CREATE DATABASE blog_p4oc CHARACTER SET 'utf8';
 
 USE blog_p4oc;
 
-CREATE TABLE Posts
+CREATE TABLE Articles
 (
     id            TINYINT   UNSIGNED  PRIMARY KEY AUTO_INCREMENT,
     title         VARCHAR(100)   NOT NULL  UNIQUE,
@@ -18,20 +18,20 @@ CREATE TABLE Users
     name	      VARCHAR(50)   	                NOT NULL  UNIQUE,
     email         VARCHAR(100)  	                NOT NULL  UNIQUE,
     pass          VARCHAR(100)  	                NOT NULL,
-    role          SET('admin','member')             NOT NULL
+    admin         tinyint(1)
 )
     ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 CREATE TABLE Comments
 (
-    id            INT             UNSIGNED      PRIMARY KEY   AUTO_INCREMENT,
+    id            MEDIUMINT             UNSIGNED      PRIMARY KEY   AUTO_INCREMENT,
     author        VARCHAR(50)     NOT NULL,
     content       TEXT            NOT NULL,
     created_date  DATETIME        NOT NULL      DEFAULT       CURRENT_TIMESTAMP,
-    post_id       TINYINT         UNSIGNED      NOT NULL,
+    article_id    TINYINT         UNSIGNED      NOT NULL,
     user_id       SMALLINT        UNSIGNED      NOT NULL,
     moderated     tinyint(1)      NOT NULL,
-    CONSTRAINT    fk_post_id      FOREIGN KEY   (post_id)     REFERENCES      Posts(id),
+    CONSTRAINT    fk_post_id      FOREIGN KEY   (article_id)     REFERENCES      Articles(id),
     CONSTRAINT    fk_user_id      FOREIGN KEY   (user_id)     REFERENCES      Users(id)
 )
     ENGINE=INNODB DEFAULT CHARSET=utf8;

@@ -15,12 +15,12 @@ class FullpostController extends MainController
 {
     public function readMethod()
     {
-        $posts = ModelFactory::getModel('Posts')->readData($_GET['id']);
+        $articles = ModelFactory::getModel('Articles')->readData($_GET['id']);
 
-        $comments = ModelFactory::getModel('Comments')->listData($_GET['id'], 'post_id');
+        $comments = ModelFactory::getModel('Comments')->listData($_GET['id'], 'article_id');
 
         return $this->twig->render('fullpost.twig', [
-            'post' => $posts,
+            'article' => $articles,
             'comments' => $comments
         ]);
     }

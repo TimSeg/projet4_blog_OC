@@ -19,10 +19,10 @@
 
 
             <div>
-                {% for post in posts %}
+                {% for article in articles %}
 
-                    <p> {{ post.title }} <br>{{ post.content | nl2br }} <br>
-                        <a href="{{ url('fullpost!read', {'id': post.id}, {'id': comment.post_id}) }}">Lire/Commenter ce chapitre</a>
+                    <p> {{ article.title }} <br>{{ article.content | nl2br }} <br>
+                        <a href="{{ url('fullpost!read', {'id': article.id}, {'id': comment.article_id}) }}">Lire/Commenter ce chapitre</a>
                     </p>
 
                 {% endfor %}

@@ -12,7 +12,7 @@ use Twig\Error\SyntaxError;
  * @package App\Controller
  */
 
-class PostController extends MainController
+class ArticlesController extends MainController
 {
 
     /**
@@ -26,9 +26,9 @@ class PostController extends MainController
     {
 
 
-        $posts = ModelFactory::getModel('Posts')->listData();
+        $articles = ModelFactory::getModel('Articles')->listData();
 
-        return $this->twig->render('post.twig', ['posts' => $posts]);
+        return $this->twig->render('articles.twig', ['articles' => $articles]);
     }
 
 

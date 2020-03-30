@@ -32,9 +32,9 @@ class UserController extends MainController
     {
         if ($this->getUserVar('role') === 'admin')
         {
-            $posts = ModelFactory::getModel('Posts')->listData();
-            $comments = ModelFactory::getModel('Comments')->listData();
-            $user = ModelFactory::getModel('Users')->listData();
+            $posts = ModelFactory::getModel('posts')->listData();
+            $comments = ModelFactory::getModel('comments')->listData();
+            $user = ModelFactory::getModel('users')->listData();
 
             return $this->twig->render('admin.twig', [
                 'posts' => $posts,
@@ -92,7 +92,7 @@ class UserController extends MainController
         }
 
         $pass_encrypted = password_hash($pass, PASSWORD_DEFAULT);
-        ModelFactory::getModel('Users')->createData([
+        ModelFactory::getModel('users')->createData([
             'name' => $name,
             'email' => $email,
             'pass' => $pass_encrypted
@@ -100,7 +100,7 @@ class UserController extends MainController
 
         // Redirection if signup form complete
         if (isset($this->post['signup'])) {
-            $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
+            $user = ModelFactory::getModel('users')->readData($this->post['email'], 'email');
             $this->sessionCreate(
                 $user['id'],
                 $user['name'],
@@ -124,14 +124,14 @@ class UserController extends MainController
     {
         $id_User = $this->get['id'];
 
-        $id_confirmed = ModelFactory::getModel('Comments')->listData($id_User, 'user_id');
+        $id_confirmed = ModelFactory::getModel('comments')->listData($id_User, 'user_id');
 
         if (!empty($id_confirmed))
         {
-            ModelFactory::getModel('Comments')->deleteData($this->get['id'], 'user_id');
+            ModelFactory::getModel('comments')->deleteData($this->get['id'], 'user_id');
         }
 
-        ModelFactory::getModel('Users')->deleteData($this->get['id']);
+        ModelFactory::getModel('users')->deleteData($this->get['id']);
 
         $this->redirect('admin');
     }
@@ -147,12 +147,12 @@ class UserController extends MainController
         if (!empty($this->post)) {
             $this->postData();
 
-            ModelFactory::getModel('Users')->updateData($this->get['id'], $this->post_content);
+            ModelFactory::getModel('users')->updateData($this->get['id'], $this->post_content);
 
             $this->redirect('admin');
         }
         if ($this->getUserVar('role') == 'admin') {
-            $admin = ModelFactory::getModel('Users')->readData($this->get['id']);
+            $admin = ModelFactory::getModel('users')->readData($this->get['id']);
 
             return $this->twig->render('adminModify.twig', [
                 'admin' => $admin
@@ -172,8 +172,8 @@ class UserController extends MainController
         if (!empty($this->post)) {
             $this->postDataUser();
 
-            ModelFactory::getModel('Users')->updateData($this->get['id'], $this->post_content);
-            $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
+            ModelFactory::getModel('users')->updateData($this->get['id'], $this->post_content);
+            $user = ModelFactory::getModel('users')->readData($this->post['email'], 'email');
             $this->sessionDestroy();
             $this->sessionCreate(
                 $user['id'],
@@ -185,7 +185,7 @@ class UserController extends MainController
 
             $this->redirect('admin');
         }
-        $admin = ModelFactory::getModel('Users')->readData($this->get['id']);
+        $admin = ModelFactory::getModel('users')->readData($this->get['id']);
 
         return $this->twig->render('admin.twig',[
             'admin' => $admin

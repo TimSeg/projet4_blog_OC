@@ -26,7 +26,7 @@ class LoginController extends MainController
     public function launchMethod()
     {
         if (!empty($this->post['email']) && !empty($this->post['pass'])) {
-            $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
+            $user = ModelFactory::getModel('users')->readData($this->post['email'], 'email');
 
             if (password_verify($this->post['pass'], $user['pass'])) {
                 $this->sessionCreate(
