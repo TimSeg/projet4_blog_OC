@@ -22,7 +22,7 @@
                 {% for article in articles %}
 
                     <p> {{ article.title }} <br>{{ article.content | nl2br }} <br>
-                        <a href="{{ url('fullpost!read', {'id': article.id}, {'id': comment.article_id}) }}">Lire/Commenter ce chapitre</a>
+                        <a href="{{ url('Articles!read', {'id': article.id}, {'id': comment.article_id}) }}">Lire/Commenter ce chapitre</a>
                     </p>
 
                 {% endfor %}
