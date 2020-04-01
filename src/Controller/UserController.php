@@ -136,30 +136,6 @@ class UserController extends MainController
         $this->redirect('admin');
     }
 
-    /**
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    public function modifyMethod()
-    {
-        if (!empty($this->post)) {
-            $this->postData();
-
-            ModelFactory::getModel('users')->updateData($this->get['id'], $this->post_content);
-
-            $this->redirect('admin');
-        }
-        if ($this->getUserVar('role') == 'admin') {
-            $admin = ModelFactory::getModel('users')->readData($this->get['id']);
-
-            return $this->twig->render('adminModify.twig', [
-                'admin' => $admin
-            ]);
-
-        } $this->redirect('home');
-    }
 
     /**
      * @return string|mixed

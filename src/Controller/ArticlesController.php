@@ -34,9 +34,8 @@ class ArticlesController extends MainController
 
     public function readMethod()
     {
-        $articles = ModelFactory::getModel('Articles')->readData($_GET['id']);
-
-        $comments = ModelFactory::getModel('Comments')->listData($_GET['id'], 'article_id');
+        $articles = ModelFactory::getModel('Articles')->readData(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
+        $comments = ModelFactory::getModel('Comments')->listData(filter_input(INPUT_GET,'id', FILTER_SANITIZE_NUMBER_INT),  'article_id');
 
         return $this->twig->render('fullArticle.twig', [
             'article' => $articles,
