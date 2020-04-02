@@ -1,8 +1,11 @@
 {% extends "layout/layout.twig" %}
 
 {% block content %}
-    {% if session.users.status is defined and session.users.status === 'admin' %}
-        <!-- Administrator connected -->
+
+        <!-- {% if session.users.role is defined and session.users.role === 'admin' %}
+         Administrator connected -->
+
+
         <h2 id="top">Panneau de contrôle :</h2>
 
         <header class="admin-absolut">
@@ -22,7 +25,7 @@
         <article>
             <h3>Création d'un article</h3>
 
-            <form method="post" action="{{ url('post!create') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ url('articles!create') }}" enctype="multipart/form-data">
                 <ul>
                     <li>
                         <label for="title">Titre</label>
@@ -53,14 +56,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for post in posts %}
+                {% for article in articles %}
                     <tr>
-                        <td>{{ post.title }}</td>
+                        <td>{{ article.title }}</td>
                         <td>
-                            <a href="{{ url('post!modify', {'id': post.id}, {'id': comment.post_id}) }}">
+                            <a href="{{ url('articles!modify', {'id': article.id}, {'id': comment.article_id}) }}">
                                 <i class="fas fa-pen-square fa-fw fa-lg"></i>
                             </a>
-                            <a href="{{ url('post!delete', {'id': post.id}) }}">
+                            <a href="{{ url('articles!delete', {'id': post.id}) }}">
                                 <i class="fas fa-times-circle fa-fw fa-lg"></i>
                             </a>
                         </td>
