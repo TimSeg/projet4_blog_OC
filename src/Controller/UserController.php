@@ -59,7 +59,6 @@ class UserController extends MainController
 
     public function createMethod()
     {
-
         $name = $this->post['name'];
         $email = $this->post['email'];
         $pass = $this->post['pass'];
@@ -74,7 +73,7 @@ class UserController extends MainController
             'pass' => $pass_encrypted
         ]);
 
-        // Redirection if signup form complete
+        // if signup form is complete - subscriber is redirected
         if (isset($this->post['signup'])) {
             $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
             $this->sessionCreate(
