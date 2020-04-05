@@ -5,7 +5,7 @@ namespace App\Model;
 
 use App\Model\Factory\PDOFactory;
 
-class PostsModel extends MainModel
+class ArticlesModel extends MainModel
 {
     /**
      * @param string $title
@@ -14,7 +14,7 @@ class PostsModel extends MainModel
      */
     public function createIt(string $title, string $content)
     {
-        $req = PDOFactory::getPDO()->prepare('INSERT INTO Posts(title,content) VALUES(?,?)');
+        $req = PDOFactory::getPDO()->prepare('INSERT INTO articles(title,content) VALUES(?,?)');
         return $req->execute(array($title,$content));
     }
 
@@ -26,7 +26,7 @@ class PostsModel extends MainModel
     public function modifyIt(int $id, string $title ,string $content)
     {
         $content = html_entity_decode($content);
-        $req = PDOFactory::getPDO()->prepare('UPDATE Posts SET title = ? , content = ? WHERE id = ?');
+        $req = PDOFactory::getPDO()->prepare('UPDATE articles SET title = ? , content = ? WHERE id = ?');
         $req->execute(array($title,$content,$id));
     }
 
@@ -37,9 +37,9 @@ class PostsModel extends MainModel
      * @return array|mixed
      */
 
-    public function getLastPost()
+    public function getLastArticle()
     {
-        $query = 'SELECT * FROM posts ORDER BY id DESC LIMIT 1';
+        $query = 'SELECT * FROM articles ORDER BY id DESC LIMIT 1';
 
         return $this->database->getAllData($query);
     }

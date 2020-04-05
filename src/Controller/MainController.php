@@ -11,7 +11,7 @@ use Twig\Loader\FilesystemLoader;
  * Manages the Main Features
  * @package App\Controller
  */
-abstract class MainController
+abstract class MainController extends GlobalsController
 {
     /**
      * @var Environment|null

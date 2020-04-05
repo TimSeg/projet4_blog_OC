@@ -9,8 +9,8 @@
 
 
     <article>
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.content | nl2br }}</p>
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.content | nl2br }}</p>
     </article>
 
 
@@ -20,5 +20,14 @@
     <p>{{ comment.content | nl2br}}</p>
 
     {% endfor %}
+
+
+
+    <nav>
+        <ul>
+            <li><a href="{{ url('articles') }}">Retour aux chapitres</a></li>
+            <li><a href="{{ url('home') }}">Retour à l'accueil</a></li>
+        </ul>
+    </nav>
 
 {% endblock %}

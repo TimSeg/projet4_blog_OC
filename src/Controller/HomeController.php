@@ -26,8 +26,8 @@ class HomeController extends MainController
     public function launchMethod()
     {
 
-        $lastPost = ModelFactory::getModel('Posts')->getLastpost();
-        return $this->twig->render('home.twig', ['posts' => $lastPost]);
+        $lastArticle = ModelFactory::getModel('Articles')->getLastArticle();
+        return $this->twig->render('home.twig', ['articles' => $lastArticle]);
 
 
 
