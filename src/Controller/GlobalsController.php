@@ -52,17 +52,17 @@ abstract class GlobalsController
      * @param int $id
      * @param string $name
      * @param string $email
-     * @param string $password
+     * @param string $pass
      * @param string $role
      */
-    public function sessionCreate(int $id, string $name, string $email, string $password,string $role)
+    public function sessionCreate(int $id, string $name, string $email, string $pass,string $admin)
     {
         $_SESSION['users'] = [
             'id'     => $id,
             'name'   => $name,
             'email'  => $email,
-            'pass'   => $password,
-            'role'   => $role
+            'pass'   => $pass,
+            'admin'   => $admin
         ];
     }
 

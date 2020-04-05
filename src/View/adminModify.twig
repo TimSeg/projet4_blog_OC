@@ -18,7 +18,7 @@
             <li>
                 <label for="role">role</label>
                 <select id="role" name="role" required>
-                    <option value="{{ user.role }}" {{ selected }}>{{ user.role }}</option>
+                    <option value="{{ user.admin }}" {{ selected }}>{{ user.admin }}</option>
                     <option value="admin">Administrateur</option>
                     <option value="member">Membre</option>
                 </select>
@@ -32,5 +32,5 @@
             </li>
         </ul>
     </form>
-    <a href="{{ url('user') }}">Panneau de contrôle</a>
+    <a href="{{ url('admin.twig') }}">Panneau de contrôle</a>
 {% endblock %}
