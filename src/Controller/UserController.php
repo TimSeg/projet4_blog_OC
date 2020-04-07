@@ -10,7 +10,7 @@ use Twig\Error\SyntaxError;
 
 
 /**
- * Class UsersController
+ * Class UserController
  * @package App\Controller
  */
 
@@ -31,10 +31,10 @@ class UserController extends MainController
      */
     public function launchMethod()
     {
-        if (!empty($this->post['email']) && !empty($this->post['pass'])) {
-            $user = ModelFactory::getModel('users')->readData($this->post['email'], 'email');
+        if (!empty($_POST['email']) && !empty($_POST['pass'])) {
+            $user = ModelFactory::getModel('users')->readData($_POST['email'], 'email');
 
-            if (password_verify($this->post['pass'], $user['pass'])) {
+            if (password_verify($_POST['pass'], $user['pass'])) {
                 $this->sessionCreate(
                     $user['id'],
                     $user['name'],
@@ -59,10 +59,9 @@ class UserController extends MainController
 
     public function createMethod()
     {
-        $name = $this->post['name'];
-        $email = $this->post['email'];
-        $pass = $this->post['pass'];
-
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $pass = $_POST['pass'];
 
 
 
@@ -73,21 +72,7 @@ class UserController extends MainController
             'pass' => $pass_encrypted
         ]);
 
-        // if signup form is complete - subscriber is redirected
-        if (isset($this->post['signup'])) {
-            $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
-            $this->sessionCreate(
-                $user['id'],
-                $user['name'],
-                $user['email'],
-                $user['pass'],
-                $user['admin']
-            );
 
-
-            return $this->twig->render('admin.twig');
-
-        }
         return $this->twig->render('home.twig');
     }
 
@@ -104,11 +89,12 @@ class UserController extends MainController
      */
     public function logoutMethod()
     {
-        $this->sessionDestroy();
-        $this->redirect('home');
+        $_SESSION['users'] = [];;
+        return $this->twig->render('home.twig');
+
+
+
     }
-
-
 
 
 
