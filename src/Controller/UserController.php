@@ -21,6 +21,24 @@ class UserController extends MainController
 
 {
 
+    /**
+     * @param int $id
+     * @param string $name
+     * @param string $email
+     * @param string $pass
+     * @param string $role
+     */
+    public function sessionCreate(int $id, string $name, string $email, string $pass,string $admin)
+    {
+        $_SESSION['users'] = [
+            'id'     => $id,
+            'name'   => $name,
+            'email'  => $email,
+            'pass'   => $pass,
+            'admin'   => $admin
+        ];
+    }
+
 
 
     /**
@@ -42,16 +60,20 @@ class UserController extends MainController
                     $user['pass'],
                     $user['admin']
                 );
-                if($user['admin'] === true)
-                {
+
+                if($user['admin'] === '1'){
                    return $this->twig->render('admin.twig');
                 }
-                else return $this->twig->render('home.twig');
+                elseif ($user['admin'] === '0'){
+                    return $this->twig->render('home.twig');
+                }
             }
 
-
+            else echo 'adresse ou mot de passe invalide';
         }
+
         return $this->twig->render('login.twig');
+
 
     }
 
@@ -62,6 +84,7 @@ class UserController extends MainController
         $name = $_POST['name'];
         $email = $_POST['email'];
         $pass = $_POST['pass'];
+        $admin = $_POST['admin'];
 
 
 
@@ -69,7 +92,8 @@ class UserController extends MainController
         ModelFactory::getModel('Users')->createData([
             'name' => $name,
             'email' => $email,
-            'pass' => $pass_encrypted
+            'pass' => $pass_encrypted,
+            'admin' => $admin = 0
         ]);
 
 
