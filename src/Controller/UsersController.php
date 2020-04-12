@@ -9,15 +9,17 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 
+
+
 /**
- * Class UserController
+ * Class UsersController
  * @package App\Controller
  */
 
 
 
 
-class UserController extends MainController
+class UsersController extends MainController
 
 {
 
@@ -62,7 +64,7 @@ class UserController extends MainController
                 );
 
                 if($user['admin'] === '1'){
-                   return $this->twig->render('admin.twig');
+                  $this->redirect('admin');
                 }
                 elseif ($user['admin'] === '0'){
                     return $this->twig->render('home.twig');
@@ -73,8 +75,6 @@ class UserController extends MainController
         }
 
         return $this->twig->render('login.twig');
-
-
     }
 
 
@@ -97,7 +97,7 @@ class UserController extends MainController
         ]);
 
 
-        return $this->twig->render('home.twig');
+        $this->redirect('Articles');
     }
 
 
@@ -113,9 +113,8 @@ class UserController extends MainController
      */
     public function logoutMethod()
     {
-        $_SESSION['users'] = [];;
-        return $this->twig->render('home.twig');
-
+        $_SESSION['users'] = [];
+        $this->redirect('home');
 
 
     }

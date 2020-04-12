@@ -10,52 +10,43 @@
         <li id="signin">
 
             <h3>Vous avez déjà un compte :</h3>
-            <form class="form" action="{{ url('user!launch') }}" method="post">
+            <form class="form" action="{{ url('users!launch') }}" method="post">
                 <fieldset>
                     <legend><i class="fas fa-unlock-alt"></i> Connexion à votre espace</legend>
-                    <ul>
-                        <li>
+
                             <label for="email">Email</label>
                             <input id="email" name="email" type="email" placeholder="E-mail" required>
-                        </li>
-                        <li>
+
                             <label for="pass">Mot de passe</label>
                             <input id="pass" name="pass" type="password" placeholder="mot de passe" autocomplete="off" required>
-                        </li>
-                        <li>
+
                             <button type="submit">Connexion</button>
-                        </li>
-                    </ul>
+
                 </fieldset>
             </form>
         </li>
 
-        <li><h3>Vous souhaitez créer un nouveau compte :</h3>
-            <form class="form" action="{{ url('user!create') }}" method="post">
+        <li id="signup">
+            <h3>Vous souhaitez créer un nouveau compte :</h3>
+            <form class="form" action="{{ url('users!create') }}" method="post">
                 <fieldset>
                     <legend><i class="fas fa-unlock-alt"></i> Créer votre espace membre</legend>
-                    <ul>
 
-                        <li>
                             <label for="name">Votre nom</label>
                             <input id="name" name="name" type="text" placeholder="Votre nom" required>
-                        </li>
 
-
-                        <li>
                             <label for="email">Email</label>
                             <input id="email" name="email" type="email" placeholder="exemple@exemple.com" required>
-                        </li>
-                        <li>
+
                             <label for="pass">Mot de passe</label>
                             <input id="pass" name="pass" type="password" placeholder="chiffres et lettres" autocomplete="off" required>
-                        </li>
-                        <li>
+
+
                             <button type="submit">Enregistrer</button>
-                        </li>
-                    </ul>
+
                 </fieldset>
-            </form></li>
+            </form>
+        </li>
 
     </ul>
 {% endblock %}
