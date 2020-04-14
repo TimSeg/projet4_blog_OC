@@ -13,7 +13,11 @@
         </li>
 
             <li>
-                <a href= "{{ url('user') }}" title="Connexion"><i class=""></i> Connectez-vous </a>
+                <a href= "{{ url('users') }}" title="Connexion"><i class=""></i> Connectez-vous </a>
+            </li>
+
+            <li>
+                <a href="{{ url('users!logout') }}" title="Déconnexion">Déconnexion</a>
             </li>
         {% endblock %}
 

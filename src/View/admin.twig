@@ -2,7 +2,7 @@
 
 {% block content %}
 
-        <!-- {% if session.users.role is defined and session.users.role === 'admin' %}
+        <!-- {% if session.users.admin is defined and session.users.admin is same as (1) %}
          Administrator connected -->
 
 
@@ -25,7 +25,7 @@
         <article>
             <h3>Création d'un article</h3>
 
-            <form method="post" action="{{ url('articles!create') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ url('admin!launch') }}" enctype="multipart/form-data">
                 <ul>
                     <li>
                         <label for="title">Titre</label>
@@ -63,7 +63,7 @@
                             <a href="{{ url('articles!modify', {'id': article.id}, {'id': comment.article_id}) }}">
                                 <i class="fas fa-pen-square fa-fw fa-lg"></i>
                             </a>
-                            <a href="{{ url('articles!delete', {'id': post.id}) }}">
+                            <a href="{{ url('articles!delete', {'id': article.id}) }}">
                                 <i class="fas fa-times-circle fa-fw fa-lg"></i>
                             </a>
                         </td>
@@ -106,7 +106,7 @@
                     <th scope="col">nom affiché</th>
                     <th scope="col">Email</th>
                     <th scope="col">Role</th>
-                    <th scope="col">Gestion / <a href="{{ url('user!create') }}"><i class="fas fa-user-plus fa-fw fa-lg"></i></a></th>
+                    <th scope="col">Gestion / <a href="{{ url('users!create') }}"><i class="fas fa-user-plus fa-fw fa-lg"></i></a></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -116,10 +116,10 @@
                         <td>{{ user.email }}</td>
                         <td>{{ user.status }}</td>
                         <td>
-                            <a href="{{ url('user!modify', {'id': user.id}) }}">
+                            <a href="{{ url('users!modify', {'id': user.id}) }}">
                                 <i class="fas fa-pen-square fa-fw fa-lg"></i>
                             </a>
-                            <a href="{{ url('user!delete', {'id': user.id}) }}">
+                            <a href="{{ url('users!delete', {'id': user.id}) }}">
                                 <i class="fas fa-times-circle fa-fw fa-lg"></i>
                             </a>
                         </td>
@@ -139,7 +139,7 @@
 
             <fieldset>
                 <legend><i class="fas fa-pen-square fa-fw fa-lg"></i> Edition</legend>
-                <form action="{{ url('user!useredit', {'id': session.users.id }) }}" method="post">
+                <form action="{{ url('users!useredit', {'id': session.users.id }) }}" method="post">
                     <ul>
 
                         <li>
