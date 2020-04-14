@@ -84,7 +84,7 @@ class UsersController extends MainController
         $name = $_POST['name'];
         $email = $_POST['email'];
         $pass = $_POST['pass'];
-        $admin = $_POST['admin'];
+        $admin = 0;
 
 
 
@@ -93,7 +93,7 @@ class UsersController extends MainController
             'name' => $name,
             'email' => $email,
             'pass' => $pass_encrypted,
-            'admin' => $admin = 0
+            'admin' => $admin
         ]);
 
 
