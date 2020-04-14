@@ -24,6 +24,58 @@ class UsersController extends MainController
 {
 
     /**
+     * @return array
+     */
+    private $post_content = [];
+    private $user = null;
+    private $session = null;
+    private $post = null;
+    private $get = null;
+
+
+
+    /**
+     * @return bool
+     */
+    public function isLogged()
+    {
+        if (array_key_exists('users', $this->session)) {
+            if (!empty($this->user)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param $var
+     * @return mixed
+     */
+    public function getUserVar($var)
+    {
+        if ($this->isLogged() === false) {
+            $this->user[$var] = null;
+        }
+        return $this->user[$var];
+    }
+
+
+
+
+
+    private function postDataUser()
+    {
+        $this->post_content['first_name']  = $this->post['first_name'];
+        $this->post_content['last_name']   = $this->post['last_name'];
+        $this->post_content['nickname']    = $this->post['nickname'];
+        $this->post_content['email']       = $this->post['email'];
+
+        $this->post_content['status']      = $this->getUserVar('status');
+    }
+
+
+
+    /**
      * @param int $id
      * @param string $name
      * @param string $email
@@ -67,7 +119,7 @@ class UsersController extends MainController
                   $this->redirect('admin');
                 }
                 elseif ($user['admin'] === '0'){
-                    return $this->twig->render('home.twig');
+                    $this->redirect('users!useredit');
                 }
             }
 
@@ -99,6 +151,43 @@ class UsersController extends MainController
 
         $this->redirect('Articles');
     }
+
+
+
+
+
+    /**
+     * @return string|mixed
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function usereditMethod()
+    {
+        if (!empty($_POST)) {
+            $this->postDataUser();
+
+            ModelFactory::getModel('Users')->updateData($this->get['id'], $this->post_content);
+            $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
+            $_SESSION['users'] = [];
+            $this->sessionCreate(
+                $user['id'],
+                $user['name'],
+                $user['email'],
+                $user['pass'],
+                $user['admin']
+            );
+
+            $this->redirect('adminUser');
+        }
+        //$admin = ModelFactory::getModel('Users')->readData($this->get['id']);
+
+        return $this->twig->render('adminUser.twig');
+    }
+
+
+
+
 
 
 

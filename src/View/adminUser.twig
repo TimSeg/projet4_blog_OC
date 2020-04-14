@@ -1,0 +1,42 @@
+{% extends "layout/layout.twig" %}
+
+{% block main %}
+
+
+
+    <h2>Paramètres personnels</h2>
+
+    <article>
+        <h3>Bienvenue dans votre espace utilisateur {{ session.users.name }}</h3>
+        <p>Pour modifier vos informations personnelles, utilisez le formulaire ci dessous.</p>
+
+        <fieldset>
+            <legend><i class="fas fa-pen-square fa-fw fa-lg"></i>Vos nouvelles informations (seul votre nom sera affiché avec vos commentaires)</legend>
+            <form action="{{ url('users!useredit', {'id': session.users.id }) }}" method="post">
+
+
+                <label for="name">Nom affiché</label>
+                <input id="name" type="text" name="name" value="{{ session.users.name }}" required>
+
+
+                <label for="email">Email de contact</label>
+                <input id="email" type="email" name="email" value="{{ session.users.email }}" required>
+
+                <input type="submit" value="Mettre à jour">
+
+            </form>
+
+                <input type="reset" value="Supprimer votre compte">
+
+
+        </fieldset>
+    </article>
+
+
+
+
+
+
+
+
+{% endblock %}

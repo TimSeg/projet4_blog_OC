@@ -1,9 +1,8 @@
 {% extends "layout/layout.twig" %}
 
-{% block content %}
+{% block main %}
 
-        <!-- {% if session.users.admin is defined and session.users.admin is same as (1) %}
-         Administrator connected -->
+
 
 
         <h2 id="top">Panneau de contrôle :</h2>
@@ -129,36 +128,5 @@
             </table>
         </article>
 
-    {% else %}
-        <!-- Member connected -->
-        <h2>Paramètres personnels</h2>
 
-        <article>
-            <h3>Bienvenue dans votre espace utilisateur {{ session.users.name }}</h3>
-            <p>Pour modifier vos informations personnelles, utilisez le formulaire ci dessous.</p>
-
-            <fieldset>
-                <legend><i class="fas fa-pen-square fa-fw fa-lg"></i> Edition</legend>
-                <form action="{{ url('users!useredit', {'id': session.users.id }) }}" method="post">
-                    <ul>
-
-                        <li>
-                            <label for="name">nom affiché</label>
-                            <input id="name" type="text" name="name" value="{{ session.users.name }}" required>
-                        </li>
-
-                        <li>
-                            <label for="email">Email</label>
-                            <input id="email" type="email" name="email" value="{{ session.users.email }}" required>
-                        </li>
-
-                        <li>
-                            <input type="reset" value="Valeurs par défaut">
-                            <input type="submit" value="Mettre à jour">
-                        </li>
-                    </ul>
-                </form>
-            </fieldset>
-        </article>
-    {% endif %}
 {% endblock %}
