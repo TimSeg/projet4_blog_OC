@@ -44,6 +44,19 @@ abstract class MainController
         exit;
     }
 
+    /**
+     * @param string $view
+     * @param array $params
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function render(string $view, array $params = [])
+    {
+        return $this->twig->render($view, $params);
+    }
+
 
 
 }

@@ -27,37 +27,7 @@ class UsersController extends MainController
      * @return array
      */
     private $post_content = [];
-    private $user = null;
-    private $session = null;
-    private $post = null;
-    private $get = null;
 
-
-
-    /**
-     * @return bool
-     */
-    public function isLogged()
-    {
-        if (array_key_exists('users', $this->session)) {
-            if (!empty($this->user)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * @param $var
-     * @return mixed
-     */
-    public function getUserVar($var)
-    {
-        if ($this->isLogged() === false) {
-            $this->user[$var] = null;
-        }
-        return $this->user[$var];
-    }
 
 
 
@@ -65,12 +35,9 @@ class UsersController extends MainController
 
     private function postDataUser()
     {
-        $this->post_content['first_name']  = $this->post['first_name'];
-        $this->post_content['last_name']   = $this->post['last_name'];
-        $this->post_content['nickname']    = $this->post['nickname'];
-        $this->post_content['email']       = $this->post['email'];
+        $this->post_content['name']    = $_POST['name'];
+        $this->post_content['email']   = $_POST['email'];
 
-        $this->post_content['status']      = $this->getUserVar('status');
     }
 
 
@@ -118,9 +85,7 @@ class UsersController extends MainController
                 if($user['admin'] === '1'){
                   $this->redirect('admin');
                 }
-                elseif ($user['admin'] === '0'){
-                    $this->redirect('users!useredit');
-                }
+                else $this->redirect('users!useredit');
             }
 
             else echo 'adresse ou mot de passe invalide';
@@ -149,6 +114,8 @@ class UsersController extends MainController
         ]);
 
 
+
+
         $this->redirect('Articles');
     }
 
@@ -167,8 +134,8 @@ class UsersController extends MainController
         if (!empty($_POST)) {
             $this->postDataUser();
 
-            ModelFactory::getModel('Users')->updateData($this->get['id'], $this->post_content);
-            $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
+            ModelFactory::getModel('Users')->updateData($_GET['id'], $this->post_content);
+            $user = ModelFactory::getModel('Users')->readData($_POST['email'], 'email');
             $_SESSION['users'] = [];
             $this->sessionCreate(
                 $user['id'],
@@ -180,10 +147,13 @@ class UsersController extends MainController
 
             $this->redirect('adminUser');
         }
-        //$admin = ModelFactory::getModel('Users')->readData($this->get['id']);
+        //$name = ModelFactory::getModel('Users')->readData($_GET['name']);
 
-        return $this->twig->render('adminUser.twig');
+        return $this->twig->render('adminUser.twig',[
+            'name' => $name
+        ]);
     }
+
 
 
 

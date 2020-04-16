@@ -3,11 +3,11 @@
 
 
 {% block main %}
-    <ul>
 
 
 
-        <li id="signin">
+
+        <section id="signin">
 
             <h3>Vous avez déjà un compte :</h3>
             <form class="form" action="{{ url('users!launch') }}" method="post">
@@ -24,9 +24,9 @@
 
                 </fieldset>
             </form>
-        </li>
+        </section>
 
-        <li id="signup">
+        <section id="signup">
             <h3>Vous souhaitez créer un nouveau compte :</h3>
             <form class="form" action="{{ url('users!create') }}" method="post">
                 <fieldset>
@@ -46,7 +46,6 @@
 
                 </fieldset>
             </form>
-        </li>
+        </section>
 
-    </ul>
 {% endblock %}
