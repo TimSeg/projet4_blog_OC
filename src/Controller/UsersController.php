@@ -82,15 +82,15 @@ class UsersController extends MainController
                     $user['admin']
                 );
 
+                $name = $user['name'];
+
                 if($user['admin'] === '1'){
                   $this->redirect('admin');
                 }
-                else $this->redirect('users!useredit');
+                return $this->twig->render('adminUser.twig',['name' => $name]);
             }
-
             else echo 'adresse ou mot de passe invalide';
         }
-
         return $this->twig->render('login.twig');
     }
 
@@ -147,11 +147,7 @@ class UsersController extends MainController
 
             $this->redirect('adminUser');
         }
-        //$name = ModelFactory::getModel('Users')->readData($_GET['name']);
 
-        return $this->twig->render('adminUser.twig',[
-            'name' => $name
-        ]);
     }
 
 
