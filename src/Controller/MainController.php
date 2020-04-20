@@ -18,6 +18,11 @@ abstract class MainController
      */
     protected $twig = null;
 
+    protected $post = null;
+    protected $session = null;
+
+
+
     /**
      * MainController constructor
      * Creates the Template Engine & adds its Extensions
@@ -28,6 +33,10 @@ abstract class MainController
 
 
         $this->twig->addExtension(new PhpAdditionalExtension());
+
+        $this->post     = filter_input_array(INPUT_POST);
+        $this->session  = filter_var_array($_SESSION);
+
 
     }
 

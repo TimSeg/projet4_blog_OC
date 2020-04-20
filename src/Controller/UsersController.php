@@ -23,6 +23,8 @@ class UsersController extends MainController
 
 {
 
+
+
     /**
      * @return array
      */
@@ -30,13 +32,10 @@ class UsersController extends MainController
 
 
 
-
-
-
     private function postDataUser()
     {
-        $this->post_content['name']    = $_POST['name'];
-        $this->post_content['email']   = $_POST['email'];
+        $this->post_content['name']    = $this->post['name'];
+        $this->post_content['email']   = $this->post['email'];
 
     }
 
@@ -51,7 +50,7 @@ class UsersController extends MainController
      */
     public function sessionCreate(int $id, string $name, string $email, string $pass,string $admin)
     {
-        $_SESSION['users'] = [
+        $this->session['users'] = [
             'id'     => $id,
             'name'   => $name,
             'email'  => $email,
@@ -70,10 +69,10 @@ class UsersController extends MainController
      */
     public function launchMethod()
     {
-        if (!empty($_POST['email']) && !empty($_POST['pass'])) {
-            $user = ModelFactory::getModel('users')->readData($_POST['email'], 'email');
+        if (!empty($this->post['email']) && !empty($this->post['pass'])) {
+            $user = ModelFactory::getModel('users')->readData($this->post['email'], 'email');
 
-            if (password_verify($_POST['pass'], $user['pass'])) {
+            if (password_verify($this->post['pass'], $user['pass'])) {
                 $this->sessionCreate(
                     $user['id'],
                     $user['name'],
@@ -98,22 +97,19 @@ class UsersController extends MainController
 
     public function createMethod()
     {
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $pass = $_POST['pass'];
-        $admin = 0;
+        $user['name'] = $this->post['name'];
+        $user['email'] = $this->post['email'];
+        $user['pass'] = $this->post['pass'];
+        $user['admin'] = 0;
 
 
-
-        $pass_encrypted = password_hash($pass, PASSWORD_DEFAULT);
+        $pass_encrypted = password_hash($user['pass'], PASSWORD_DEFAULT);
         ModelFactory::getModel('Users')->createData([
-            'name' => $name,
-            'email' => $email,
+            'name' => $user['name'],
+            'email' => $user['email'],
             'pass' => $pass_encrypted,
-            'admin' => $admin
+            'admin' => $user['admin']
         ]);
-
-
 
 
         $this->redirect('Articles');
@@ -131,12 +127,12 @@ class UsersController extends MainController
      */
     public function usereditMethod()
     {
-        if (!empty($_POST)) {
+        if (!empty($this->post)) {
             $this->postDataUser();
 
-            ModelFactory::getModel('Users')->updateData($_GET['id'], $this->post_content);
-            $user = ModelFactory::getModel('Users')->readData($_POST['email'], 'email');
-            $_SESSION['users'] = [];
+            ModelFactory::getModel('Users')->updateData($this->session['user']['id'], $this->post_content);
+            $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
+            $this->session['users'] = [];
             $this->sessionCreate(
                 $user['id'],
                 $user['name'],
@@ -153,13 +149,6 @@ class UsersController extends MainController
 
 
 
-
-
-
-
-
-
-
         /**
      * @return string
      * @throws LoaderError
@@ -168,15 +157,11 @@ class UsersController extends MainController
      */
     public function logoutMethod()
     {
-        $_SESSION['users'] = [];
+        $this->session['users'] = [];
         $this->redirect('home');
 
 
     }
-
-
-
-
 
 
 
