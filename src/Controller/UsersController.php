@@ -32,13 +32,13 @@ class UsersController extends MainController
 
 
 
+
     private function postDataUser()
     {
         $this->post_content['name']    = $this->post['name'];
         $this->post_content['email']   = $this->post['email'];
 
     }
-
 
 
     /**
@@ -50,7 +50,7 @@ class UsersController extends MainController
      */
     public function sessionCreate(int $id, string $name, string $email, string $pass,string $admin)
     {
-        $this->session['users'] = [
+        $_SESSION['users'] = [
             'id'     => $id,
             'name'   => $name,
             'email'  => $email,
@@ -81,6 +81,8 @@ class UsersController extends MainController
                     $user['admin']
                 );
 
+                var_dump($_SESSION);
+
                 $name = $user['name'];
 
                 if($user['admin'] === '1'){
@@ -91,6 +93,9 @@ class UsersController extends MainController
             else echo 'adresse ou mot de passe invalide';
         }
         return $this->twig->render('login.twig');
+
+
+
     }
 
 
@@ -132,7 +137,7 @@ class UsersController extends MainController
 
             ModelFactory::getModel('Users')->updateData($this->session['user']['id'], $this->post_content);
             $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
-            $this->session['users'] = [];
+            $_SESSION['users'] = [];
             $this->sessionCreate(
                 $user['id'],
                 $user['name'],
@@ -149,6 +154,10 @@ class UsersController extends MainController
 
 
 
+
+
+
+
         /**
      * @return string
      * @throws LoaderError
@@ -157,7 +166,7 @@ class UsersController extends MainController
      */
     public function logoutMethod()
     {
-        $this->session['users'] = [];
+        $_SESSION['users'] = [];
         $this->redirect('home');
 
 

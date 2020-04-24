@@ -21,17 +21,19 @@ class AdminController extends MainController
      */
     public function launchMethod()
     {
-            $articles = ModelFactory::getModel('Articles')->listData();
-            $comments = ModelFactory::getModel('Comments')->listData();
-            $users = ModelFactory::getModel('Users')->listData();
 
-            return $this->twig->render("admin.twig", [
-                'articles' => $articles,
-                'comments' => $comments,
-                'users' => $users
-            ]);
-        }
+        $articles = ModelFactory::getModel('Articles')->listData();
+        $comments = ModelFactory::getModel('Comments')->listData();
+        $users = ModelFactory::getModel('Users')->listData();
 
+
+        return $this->twig->render("admin.twig", [
+            'articles' => $articles,
+            'comments' => $comments,
+            'users' => $users
+        ]);
+
+
+    }
 }
-
 

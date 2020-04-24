@@ -19,9 +19,8 @@ abstract class MainController
     protected $twig = null;
 
     protected $post = null;
+    protected $get = null;
     protected $session = null;
-
-
 
     /**
      * MainController constructor
@@ -35,8 +34,9 @@ abstract class MainController
         $this->twig->addExtension(new PhpAdditionalExtension());
 
         $this->post     = filter_input_array(INPUT_POST);
-        $this->session  = filter_var_array($_SESSION);
+        $this->get      = filter_input_array(INPUT_GET);
 
+        $this->session = filter_var_array([$_SESSION]);
 
     }
 
@@ -65,6 +65,8 @@ abstract class MainController
     {
         return $this->twig->render($view, $params);
     }
+
+
 
 
 
