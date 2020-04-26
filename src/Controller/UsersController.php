@@ -86,7 +86,7 @@ class UsersController extends MainController
                 $name = $user['name'];
 
                 if($user['admin'] === '1'){
-                  $this->redirect('admin');
+                    $this->redirect('admin');
                 }
                 return $this->twig->render('adminUser.twig',['name' => $name]);
             }
@@ -102,26 +102,45 @@ class UsersController extends MainController
 
     public function createMethod()
     {
-        $user['name'] = $this->post['name'];
-        $user['email'] = $this->post['email'];
-        $user['pass'] = $this->post['pass'];
-        $user['admin'] = 0;
 
 
-        $pass_encrypted = password_hash($user['pass'], PASSWORD_DEFAULT);
-        ModelFactory::getModel('Users')->createData([
-            'name' => $user['name'],
-            'email' => $user['email'],
-            'pass' => $pass_encrypted,
-            'admin' => $user['admin']
-        ]);
+        if (!empty($this->post['name']) && !empty($this->post['email']) && !empty($this->post['pass'])) {
+
+            $user['name'] = $this->post['name'];
+            $user['email'] = $this->post['email'];
+            $user['pass'] = $this->post['pass'];
+            $user['admin'] = 0;
 
 
-        $this->redirect('Articles');
+            $pass_encrypted = password_hash($user['pass'], PASSWORD_DEFAULT);
+            $users = ModelFactory::getModel('users')->readData($this->post['email'], 'email');
+
+// check if mail already exists in database -> send to error page
+            if ($this->post['email'] === $users['email']) {
+                return $this->twig->render('error.twig');
+            }
+// create new user
+            ModelFactory::getModel('Users')->createData([
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'pass' => $pass_encrypted,
+                'admin' => $user['admin']
+            ]);
+
+// create session if new user has completed the form
+                $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
+                $this->sessionCreate(
+                    $user['id'],
+                    $user['name'],
+                    $user['email'],
+                    $user['pass'],
+                    $user['admin']
+                );
+                $this->redirect('Articles');
+
+            }
+
     }
-
-
-
 
 
     /**
@@ -132,6 +151,9 @@ class UsersController extends MainController
      */
     public function usereditMethod()
     {
+
+        // update user personnal infos
+
         if (!empty($this->post)) {
             $this->postDataUser();
 
@@ -155,10 +177,7 @@ class UsersController extends MainController
 
 
 
-
-
-
-        /**
+    /**
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
@@ -166,7 +185,7 @@ class UsersController extends MainController
      */
     public function logoutMethod()
     {
-        $_SESSION['users'] = [];
+        $_SESSION['user'] = [];
         $this->redirect('home');
 
 
