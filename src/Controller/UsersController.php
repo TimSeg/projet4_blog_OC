@@ -23,14 +23,10 @@ class UsersController extends MainController
 
 {
 
-
-
     /**
      * @return array
      */
     private $post_content = [];
-
-
 
 
     private function postDataUser()
@@ -50,7 +46,7 @@ class UsersController extends MainController
      */
     public function sessionCreate(int $id, string $name, string $email, string $pass,string $admin)
     {
-        $_SESSION['users'] = [
+        $_SESSION['user'] = [
             'id'     => $id,
             'name'   => $name,
             'email'  => $email,
@@ -81,28 +77,23 @@ class UsersController extends MainController
                     $user['admin']
                 );
 
-                var_dump($_SESSION);
-
                 $name = $user['name'];
 
                 if($user['admin'] === '1'){
                     $this->redirect('admin');
                 }
+
                 return $this->twig->render('adminUser.twig',['name' => $name]);
             }
             else echo 'adresse ou mot de passe invalide';
         }
         return $this->twig->render('login.twig');
-
-
-
     }
 
 
 
     public function createMethod()
     {
-
 
         if (!empty($this->post['name']) && !empty($this->post['email']) && !empty($this->post['pass'])) {
 

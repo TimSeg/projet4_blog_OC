@@ -36,7 +36,7 @@ abstract class MainController
         $this->post     = filter_input_array(INPUT_POST);
         $this->get      = filter_input_array(INPUT_GET);
 
-        $this->session = filter_var_array([$_SESSION]);
+        $this->session = filter_var_array($_SESSION);
 
     }
 
