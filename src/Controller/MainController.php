@@ -18,6 +18,10 @@ abstract class MainController
      */
     protected $twig = null;
 
+    protected $post = null;
+    protected $get = null;
+    protected $session = null;
+
     /**
      * MainController constructor
      * Creates the Template Engine & adds its Extensions
@@ -28,6 +32,11 @@ abstract class MainController
 
 
         $this->twig->addExtension(new PhpAdditionalExtension());
+
+        $this->post     = filter_input_array(INPUT_POST);
+        $this->get      = filter_input_array(INPUT_GET);
+
+        $this->session = filter_var_array($_SESSION);
 
     }
 
@@ -44,6 +53,20 @@ abstract class MainController
         exit;
     }
 
+    /**
+     * @param string $view
+     * @param array $params
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function render(string $view, array $params = [])
+    {
+        return $this->twig->render($view, $params);
+    }
 
 
+
+    
 }

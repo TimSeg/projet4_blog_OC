@@ -21,6 +21,11 @@ class AdminController extends MainController
      */
     public function launchMethod()
     {
+//secure access only for main administrator login - avoid access with url
+
+        if ($this->session['user']['admin'] === '1') {
+
+
             $articles = ModelFactory::getModel('Articles')->listData();
             $comments = ModelFactory::getModel('Comments')->listData();
             $users = ModelFactory::getModel('Users')->listData();
@@ -32,6 +37,7 @@ class AdminController extends MainController
             ]);
         }
 
+        $this->redirect('home.twig');
+
+    }
 }
-
-
