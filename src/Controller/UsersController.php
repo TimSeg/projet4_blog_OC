@@ -150,7 +150,7 @@ class UsersController extends MainController
 
             ModelFactory::getModel('Users')->updateData($this->session['user']['id'], $this->post_content);
             $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
-            $_SESSION['users'] = [];
+            $_SESSION['user'] = [];
             $this->sessionCreate(
                 $user['id'],
                 $user['name'],
@@ -165,6 +165,26 @@ class UsersController extends MainController
     }
 
 
+
+
+    /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function deleteMethod()
+    {
+
+
+        ModelFactory::getModel('Users')->deleteData($this->session['user']['id'], 'id');
+
+        $_SESSION['user'] = [];
+
+        //('Votre compte a été supprimé', 'error');
+
+        $this->redirect('home');
+    }
 
 
 
