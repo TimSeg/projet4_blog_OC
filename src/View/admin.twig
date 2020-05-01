@@ -22,7 +22,7 @@
         <article>
             <h3>Création d'un article</h3>
 
-            <form method="post" action="{{ url('admin!launch') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ url('articles!create') }}" enctype="multipart/form-data">
                 <ul>
                     <li>
                         <label for="title">Titre</label>
@@ -94,7 +94,7 @@
                 </tbody>
             </table>
 
-            <h3 id="users">Espace de gestion des utilisateurs créés</h3>
+            <h3 id="users">Espace de gestion des utilisateurs inscrits</h3>
 
             <table>
                 <caption>Tableau des utilisateurs</caption>
@@ -102,8 +102,7 @@
                 <tr>
                     <th scope="col">nom affiché</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Gestion / <a href="{{ url('users!create') }}"><i class="fas fa-user-plus fa-fw fa-lg"></i></a></th>
+                    <th scope="col">Supprimer utilisateur</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -111,11 +110,7 @@
                     <tr>
                         <td>{{ user.name }}</td>
                         <td>{{ user.email }}</td>
-                        <td>{{ user.status }}</td>
                         <td>
-                            <a href="{{ url('users!modify', {'id': user.id}) }}">
-                                <i class="fas fa-pen-square fa-fw fa-lg"></i>
-                            </a>
                             <a href="{{ url('users!delete', {'id': user.id}) }}">
                                 <i class="fas fa-times-circle fa-fw fa-lg"></i>
                             </a>
