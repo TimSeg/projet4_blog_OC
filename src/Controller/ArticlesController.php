@@ -111,7 +111,20 @@ class ArticlesController extends MainController
      */
     public function modifyMethod()
     {
+        if (!empty($this->post)) {
+            $this->postData();
 
+            ModelFactory::getModel('Articles')->modifyIt($this->get['id'], $this->post_content['title'],$this->post_content['content']);
+
+            $this->redirect('admin');
+        }
+        $articles = ModelFactory::getModel('Articles')->readData($this->get['id']);
+        $comments = ModelFactory::getModel('Comments')->listData($this->get['id'], 'article_id');
+
+        return $this->render('articlesModify.twig', [
+            'articles' => $articles,
+            'comments' => $comments
+        ]);
     }
 
 }
