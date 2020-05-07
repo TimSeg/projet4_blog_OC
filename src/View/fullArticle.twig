@@ -21,9 +21,20 @@
 
     {% endfor %}
 
+    <section>
+        <h3>Ajoutez un commentaire sur ce chapitre</h3>
+        <form action="{{ url('comments!create',{'id':article.id}) }}" method="post">
+            <label for="content">Contenu du commentaire</label>
+            <textarea id="content" name="content" rows="8" cols="80"></textarea>
+            <input type="submit" value="Envoyer">
+        </form>
+    </section>
+
+<p>ATTENTION. Vous devez être inscrit pour pouvoir commenter. L'administrateur doit approuver votre commentaire avant qu'il ne soit visible sur cette page.</p>
 
 
-    <nav>
+
+<nav>
         <ul>
             <li><a href="{{ url('articles') }}">Retour aux chapitres</a></li>
             <li><a href="{{ url('home') }}">Retour à l'accueil</a></li>

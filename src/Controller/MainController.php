@@ -53,6 +53,19 @@ abstract class MainController
         exit;
     }
 
+
+    /**
+     * Redirection when comment is created
+     * @param string $value
+     * @param string $params
+     */
+    public function commentRedirect(string $value, string $params)
+    {
+        header('Location: index.php?id=' . $value . '&access=fullArticle' . $params);
+        exit;
+    }
+
+
     /**
      * @param string $view
      * @param array $params
