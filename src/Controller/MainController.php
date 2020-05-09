@@ -21,6 +21,7 @@ abstract class MainController
     protected $post = null;
     protected $get = null;
     protected $session = null;
+    protected $user = null;
 
     /**
      * MainController constructor
@@ -80,6 +81,15 @@ abstract class MainController
     }
 
 
+    /**
+     * @return void
+     */
+    public function sessionDestroy()
+    {
+        $_SESSION['user'] = [];
+    }
 
-    
+
+
+
 }

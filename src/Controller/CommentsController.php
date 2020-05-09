@@ -25,7 +25,7 @@ class CommentsController extends MainController
         $user = ModelFactory::getModel('Users')->listData();
         $comments = ModelFactory::getModel('Comments')->listData();
 
-        return $this->render("post.twig", [
+        return $this->render("fullArticle.twig", [
             'comments' => $comments,
             'user'   => $user
         ]);
@@ -39,21 +39,28 @@ class CommentsController extends MainController
      */
     public function createMethod()
     {
-        $author  = $this->get['name'];
-        $content = $this->post['content'];
-        $article_id = $this->get['id'];
-        $user_id = $this->get['id'];
 
-        if (empty($content)) {
-            $this->redirect('articles');
+        if ($this->session['user']['admin'] === '0') {
+
+            $author = $this->session['user']['name'] ;
+            $content = $this->post['content'];
+            $user_id = $this->session['user']['id'] ;
+            $article_id = $this->get['id'];
+
+            ModelFactory::getModel('Comments')->createData([
+                'author' => $author,
+                'content' => $content,
+                'user_id' => $user_id,
+                'article_id' => $article_id
+            ]);
+
+
+            $this->redirect('Articles!launch');
+
         }
-        ModelFactory::getModel('Comments')->createData([
-            'author'  => $author,
-            'content' => $content,
-            'post_id' => $post_id,
-            'user_id' => $user_id
-        ]);
-        $this->commentRedirect($article_id,'!read');
+
+        return $this->twig->render('error.twig');
+
     }
 
 }

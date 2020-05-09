@@ -21,16 +21,19 @@
 
     {% endfor %}
 
+    {% if admin == false %}
+
     <section>
-        <h3>Ajoutez un commentaire sur ce chapitre</h3>
+        <h1>Ajoutez un commentaire sur ce chapitre : {{ article.title }}</h1>
         <form action="{{ url('comments!create',{'id':article.id}) }}" method="post">
             <label for="content">Contenu du commentaire</label>
             <textarea id="content" name="content" rows="8" cols="80"></textarea>
             <input type="submit" value="Envoyer">
         </form>
     </section>
+    {% endif %}
 
-<p>ATTENTION. Vous devez être inscrit pour pouvoir commenter. L'administrateur doit approuver votre commentaire avant qu'il ne soit visible sur cette page.</p>
+    <p>ATTENTION. Vous devez être inscrit pour pouvoir commenter. L'administrateur se réserve le droit de modérer votre commentaire.</p>
 
 
 

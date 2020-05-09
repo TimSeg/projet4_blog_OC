@@ -196,7 +196,7 @@ class UsersController extends MainController
      */
     public function logoutMethod()
     {
-        $_SESSION['user'] = [];
+        $this->sessionDestroy();
         $this->redirect('home');
 
 
