@@ -63,4 +63,20 @@ class CommentsController extends MainController
 
     }
 
+
+    /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function deleteMethod()
+    {
+        ModelFactory::getModel('Comments')->deleteData($this->get['id']);
+
+        $this->redirect('admin');
+    }
+
+
+
 }
