@@ -90,7 +90,7 @@
                 </thead>
                 <tbody>
                 {% for comment in comments %}
-                    {% if comment.reported == 1 %}
+                    {% if comment.moderated == 1 %}
                         <tr>
                             <td>{{ comment.author }} </td>
                             <td>{{ comment.content | nl2br }} </td>

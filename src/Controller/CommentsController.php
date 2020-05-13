@@ -40,7 +40,7 @@ class CommentsController extends MainController
     public function createMethod()
     {
 
-        if ($this->session['user']['admin'] === '0') {
+        if (($this->session['user']['admin'] === '0') || ($this->session['user']['admin'] === '1') ) {
 
             $author = $this->session['user']['name'] ;
             $content = $this->post['content'];
@@ -62,6 +62,32 @@ class CommentsController extends MainController
         return $this->twig->render('error.twig');
 
     }
+
+
+
+    /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function reportMethod()
+    {
+        if (($this->session['user']['admin'] === '0') || ($this->session['user']['admin'] === '1')) {
+
+           $comment_id = $this->get['id'];
+           $comment    = ModelFactory::getModel('Comments')->readData($comment_id);
+           $article_id = $comment['article_id'];
+           $data['moderated'] = 1;
+
+           ModelFactory::getModel('Comments')->updateData($comment_id, $data);
+
+           $this->redirect('articles!read', ['id' => $article_id]);
+        }
+        return $this->twig->render('error.twig');
+    }
+
+
 
 
     /**

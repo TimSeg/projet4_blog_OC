@@ -4,6 +4,8 @@
 
 
 {% block main %}
+    <!DOCTYPE html>
+
     <h2>Lecture du chapitre</h2>
 
 
@@ -18,22 +20,24 @@
 
     <p>Écrit par : <span>{{ comment.author }}</span>, le <span>{{ comment.created_date }}</span></p>
     <p>{{ comment.content | nl2br}}</p>
-
+        <a class="btn-report" href="{{ url('comments!report',{'id': comment.id}, {'id':comment.post_id}) }}">Signaler le commentaire
+            <i class="fas fa-exclamation-triangle"></i>
+        </a>
     {% endfor %}
 
-    {% if admin == false %}
 
     <section>
         <h1>Ajoutez un commentaire sur ce chapitre : {{ article.title }}</h1>
+
+        <p>ATTENTION. Vous devez être inscrit pour pouvoir commenter. L'administrateur se réserve le droit de modérer votre commentaire.</p><br>
+        <p>Tout commentaire ne pourra être modifié ou supprimé autrement qu'en supprimat votre compte, aussi soyez sûr de vos écrits !</p>
+
         <form action="{{ url('comments!create',{'id':article.id}) }}" method="post">
             <label for="content">Contenu du commentaire</label>
             <textarea id="content" name="content" rows="8" cols="80"></textarea>
             <input type="submit" value="Envoyer">
         </form>
     </section>
-    {% endif %}
-
-    <p>ATTENTION. Vous devez être inscrit pour pouvoir commenter. L'administrateur se réserve le droit de modérer votre commentaire.</p>
 
 
 
