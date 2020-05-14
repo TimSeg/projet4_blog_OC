@@ -27,7 +27,7 @@ class CommentsController extends MainController
 
         return $this->render("fullArticle.twig", [
             'comments' => $comments,
-            'user'   => $user
+            'user'     => $user
         ]);
     }
 
@@ -42,15 +42,15 @@ class CommentsController extends MainController
 
         if (($this->session['user']['admin'] === '0') || ($this->session['user']['admin'] === '1') ) {
 
-            $author = $this->session['user']['name'] ;
-            $content = $this->post['content'];
-            $user_id = $this->session['user']['id'] ;
+            $author     = $this->session['user']['name'] ;
+            $content    = $this->post['content'];
+            $user_id    = $this->session['user']['id'] ;
             $article_id = $this->get['id'];
 
             ModelFactory::getModel('Comments')->createData([
-                'author' => $author,
-                'content' => $content,
-                'user_id' => $user_id,
+                'author'     => $author,
+                'content'    => $content,
+                'user_id'    => $user_id,
                 'article_id' => $article_id
             ]);
 
@@ -75,9 +75,9 @@ class CommentsController extends MainController
     {
         if (($this->session['user']['admin'] === '0') || ($this->session['user']['admin'] === '1')) {
 
-           $comment_id = $this->get['id'];
-           $comment    = ModelFactory::getModel('Comments')->readData($comment_id);
-           $article_id = $comment['article_id'];
+           $comment_id        = $this->get['id'];
+           $comment           = ModelFactory::getModel('Comments')->readData($comment_id);
+           $article_id        = $comment['article_id'];
            $data['moderated'] = 1;
 
            ModelFactory::getModel('Comments')->updateData($comment_id, $data);
@@ -85,6 +85,22 @@ class CommentsController extends MainController
            $this->redirect('articles!read', ['id' => $article_id]);
         }
         return $this->twig->render('error.twig');
+    }
+
+
+
+    public function approvedMethod()
+    {
+
+        $comment_id        = $this->get['id'];
+        $comment           = ModelFactory::getModel('Comments')->readData($comment_id);
+        $article_id        = $comment['article_id'];
+        $data['moderated'] = 0;
+
+        ModelFactory::getModel('Comments')->updateData($comment_id, $data);
+
+        $this->redirect('admin');
+
     }
 
 
