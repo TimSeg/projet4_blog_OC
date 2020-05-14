@@ -87,8 +87,17 @@ class UsersController extends MainController
             }
             else echo 'adresse ou mot de passe invalide';
         }
+
+        //avoid password typing for admin when session is still open
+
+        elseif ($this->session['user']['admin'] === '1'){
+
+            $this->redirect('admin');
+        }
+
         return $this->twig->render('login.twig');
     }
+
 
 
 
