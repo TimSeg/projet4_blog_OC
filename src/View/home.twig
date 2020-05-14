@@ -25,7 +25,7 @@
             <div>
                 {% for article in articles %}
 
-                    <p> {{ article.title }} <br>{{ article.content | nl2br }} </p>
+                    <p> {{ article.title }} <br>{{ article.content | raw }} </p>
 
                 {% endfor %}
             </div>

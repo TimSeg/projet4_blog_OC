@@ -94,7 +94,7 @@
                         <tr>
                             <td>{{ comment.author }} </td>
                             <td>{{ comment.content | nl2br }} </td>
-                            <td><a href="{{ url('comments!notreported', {'id': comment.id}) }}">Poster</a></td>
+                            <td><a href="{{ url('comments!approved', {'id': comment.id}) }}">Poster</a></td>
                             <td><a class="btn-delete" href="#">Supprimer<i class="fas fa-times-circle fa-fw fa-lg"></i></a></td>
                         </tr>
                     {% endif %}
