@@ -30,13 +30,16 @@
             </form>
 
 
-            <form action="{{ url('users!delete', {'id': session.users.id }) }}" method="post">
+            <section>
 
                 <h4>Pour supprimer votre compte ainsi que vos données personnelles, utilisez le bouton ci-dessous</h4>
                 <p class="warning"> ATTENTION : toute suppression de compte est définitive</p>
-                <input type="submit" value="Supprimer votre compte">
+                <a href="{{ url("users!delete", {'id': id}) }}">
+                    <button class="link-remove white" type="button">
+                        <i class="fas fa-exclamation-triangle"></i> Supprimer mon compte utilisateur <i class="fas fa-exclamation-triangle"></i>
+                    </button>
 
-            </form >
+            </section >
 
         </fieldset>
     </article>

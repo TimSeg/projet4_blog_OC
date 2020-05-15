@@ -4,7 +4,6 @@
 
 
 {% block main %}
-    <!DOCTYPE html>
 
     <h2>Lecture du chapitre</h2>
 
@@ -30,7 +29,7 @@
         <h1>Ajoutez un commentaire sur ce chapitre : {{ article.title }}</h1>
 
         <p>ATTENTION. Vous devez être inscrit pour pouvoir commenter. L'administrateur se réserve le droit de modérer votre commentaire.</p><br>
-        <p>Tout commentaire ne pourra être modifié ou supprimé autrement qu'en supprimant votre compte, aussi soyez sûr de vos écrits !</p>
+        <p>Tout commentaire ne pourra être modifié. Il ne sera supprimé qu'en supprimant votre compte, aussi soyez sûr de vos écrits !</p>
 
         <form action="{{ url('comments!create',{'id':article.id}) }}" method="post">
             <label for="content">Contenu du commentaire</label>
