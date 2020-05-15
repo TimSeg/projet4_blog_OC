@@ -78,17 +78,27 @@ class UsersController extends MainController
                 );
 
                 $name = $user['name'];
+                $id   = $user['id'];
 
                 if($user['admin'] === '1'){
                     $this->redirect('admin');
                 }
 
-                return $this->twig->render('adminUser.twig',['name' => $name]);
+                return $this->twig->render('adminUser.twig',['name' => $name, 'id' => $id]);
             }
             else echo 'adresse ou mot de passe invalide';
         }
+
+        //avoid password typing for admin when session is still open
+
+        elseif ($this->session['user']['admin'] === '1'){
+
+            $this->redirect('admin');
+        }
+
         return $this->twig->render('login.twig');
     }
+
 
 
 
@@ -140,10 +150,11 @@ class UsersController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
+
+    // update user personnal infos
+
     public function usereditMethod()
     {
-
-        // update user personnal infos
 
         if (!empty($this->post)) {
             $this->postDataUser();
@@ -165,6 +176,12 @@ class UsersController extends MainController
     }
 
 
+    public function deleteforuserMethod()
+    {
+
+
+    }
+
 
 
     /**
@@ -173,17 +190,22 @@ class UsersController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
+
+    // delete a user - only for admin
+
     public function deleteMethod()
     {
+        $user_id = $this->get['id'];
+        $confirmed_id = ModelFactory::getModel('Comments')->listData($user_id, 'user_id');
 
+        if (!empty($confirmed_id))
+        {
+            ModelFactory::getModel('Comments')->deleteData($this->get['id'], 'user_id');
+        }
+        ModelFactory::getModel('Users')->deleteData($this->get['id']);
 
-        ModelFactory::getModel('Users')->deleteData($this->session['user']['id'], 'id');
+        $this->redirect('admin');
 
-        $_SESSION['user'] = [];
-
-        //('Votre compte a été supprimé', 'error');
-
-        $this->redirect('home');
     }
 
 
@@ -196,7 +218,7 @@ class UsersController extends MainController
      */
     public function logoutMethod()
     {
-        $_SESSION['user'] = [];
+        $this->sessionDestroy();
         $this->redirect('home');
 
 

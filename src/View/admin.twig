@@ -1,6 +1,15 @@
+
 {% extends "layout/layout.twig" %}
 
 {% block main %}
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>tinymce.init({ selector:'textarea' });</script>
+    </head>
+    </html>
 
 
         <h2 id="top">Panneau de contrôle :</h2>
@@ -10,10 +19,9 @@
 
             <nav>
                 <ul>
-                    <li><a href="#chapters"><i class="fas fa-book"></i> Vers les chapitres</a></li>
-                    <li><a href="#comments"><i class="fas fa-comments"></i> Vers les commentaires signalés</a></li>
-                    <li><a href="#users"><i class="fas fa-user"></i> Vers les utilisateurs</a></li>
-                    <li><a href="#footer">Descendre <i class="fas fa-level-down-alt"></i></a> - <a href="#top">Remonter <i class="fas fa-level-up-alt"></i></a></li>
+                    <li><a href="#chapters"><i class="fas fa-book"></i> Gestion des chapitres</a></li>
+                    <li><a href="#comments"><i class="fas fa-comments"></i> Voir les commentaires signalés</a></li>
+                    <li><a href="#users"><i class="fas fa-user"></i> Liste des utilisateurs enregistrés</a></li>
                 </ul>
             </nav>
         </header>
@@ -22,7 +30,7 @@
         <article>
             <h3>Création d'un article</h3>
 
-            <form method="post" action="{{ url('admin!launch') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ url('articles!create') }}" enctype="multipart/form-data">
                 <ul>
                     <li>
                         <label for="title">Titre</label>
@@ -82,11 +90,11 @@
                 </thead>
                 <tbody>
                 {% for comment in comments %}
-                    {% if comment.reported == 1 %}
+                    {% if comment.moderated == 1 %}
                         <tr>
                             <td>{{ comment.author }} </td>
                             <td>{{ comment.content | nl2br }} </td>
-                            <td><a href="{{ url('comments!notreported', {'id': comment.id}) }}">Poster</a></td>
+                            <td><a href="{{ url('comments!approved', {'id': comment.id}) }}">Poster</a></td>
                             <td><a class="btn-delete" href="#">Supprimer<i class="fas fa-times-circle fa-fw fa-lg"></i></a></td>
                         </tr>
                     {% endif %}
@@ -94,7 +102,7 @@
                 </tbody>
             </table>
 
-            <h3 id="users">Espace de gestion des utilisateurs créés</h3>
+            <h3 id="users">Espace de gestion des utilisateurs inscrits</h3>
 
             <table>
                 <caption>Tableau des utilisateurs</caption>
@@ -102,8 +110,7 @@
                 <tr>
                     <th scope="col">nom affiché</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Gestion / <a href="{{ url('users!create') }}"><i class="fas fa-user-plus fa-fw fa-lg"></i></a></th>
+                    <th scope="col">Supprimer utilisateur</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -111,11 +118,7 @@
                     <tr>
                         <td>{{ user.name }}</td>
                         <td>{{ user.email }}</td>
-                        <td>{{ user.status }}</td>
                         <td>
-                            <a href="{{ url('users!modify', {'id': user.id}) }}">
-                                <i class="fas fa-pen-square fa-fw fa-lg"></i>
-                            </a>
                             <a href="{{ url('users!delete', {'id': user.id}) }}">
                                 <i class="fas fa-times-circle fa-fw fa-lg"></i>
                             </a>

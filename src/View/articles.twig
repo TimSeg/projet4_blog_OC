@@ -5,6 +5,8 @@
 {% block description %}Billet simple pour l'Alaska - Jean Forteroche{% endblock %}
 
 {% block main %}
+    <!DOCTYPE html>
+
     <main id="home">
         <section>
             <h2>Le roman en cours</h2>
@@ -21,7 +23,7 @@
             <div>
                 {% for article in articles %}
 
-                    <p> {{ article.title }} <br>{{ article.content | nl2br }} <br>
+                    <p> {{ article.title }} <br>{{ article.content | raw }} <br>
                         <a href="{{ url('Articles!read', {'id': article.id}, {'id': comment.article_id}) }}">Lire/Commenter ce chapitre</a>
                     </p>
 

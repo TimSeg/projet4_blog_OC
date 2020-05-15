@@ -21,6 +21,7 @@ abstract class MainController
     protected $post = null;
     protected $get = null;
     protected $session = null;
+    protected $user = null;
 
     /**
      * MainController constructor
@@ -53,6 +54,19 @@ abstract class MainController
         exit;
     }
 
+
+    /**
+     * Redirection when comment is created
+     * @param string $value
+     * @param string $params
+     */
+    public function commentRedirect(string $value, string $params)
+    {
+        header('Location: index.php?id=' . $value . '&access=fullArticle' . $params);
+        exit;
+    }
+
+
     /**
      * @param string $view
      * @param array $params
@@ -67,6 +81,15 @@ abstract class MainController
     }
 
 
+    /**
+     * @return void
+     */
+    public function sessionDestroy()
+    {
+        $_SESSION['user'] = [];
+    }
 
-    
+
+
+
 }
