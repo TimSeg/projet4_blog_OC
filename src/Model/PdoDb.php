@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Model\Factory\PDOFactory;
 use PDO;
 
 /**
@@ -63,8 +64,10 @@ class PdoDb
      */
     public function setData(string $query, array $params = [])
     {
-        $PDOStatement = $this->pdo->prepare($query);
+        $req = PDOFactory::getPDO()->prepare($query);
+        return $req->execute($params);
 
-        return $PDOStatement->execute($params);
+       // $PDOStatement = $this->pdo->prepare($query);
+       // return $PDOStatement->execute($params);
     }
 }
