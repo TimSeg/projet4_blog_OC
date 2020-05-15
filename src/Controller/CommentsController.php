@@ -47,6 +47,8 @@ class CommentsController extends MainController
             $user_id    = $this->session['user']['id'] ;
             $article_id = $this->get['id'];
 
+
+
             ModelFactory::getModel('Comments')->createData([
                 'author'     => $author,
                 'content'    => $content,
@@ -92,12 +94,7 @@ class CommentsController extends MainController
     public function approvedMethod()
     {
 
-        $comment_id        = $this->get['id'];
-        $comment           = ModelFactory::getModel('Comments')->readData($comment_id);
-        $article_id        = $comment['article_id'];
-        $data['moderated'] = 0;
-
-        ModelFactory::getModel('Comments')->updateData($comment_id, $data);
+        ModelFactory::getModel('Comments')->updateData($this->get['id'], ['moderated' => 0]);
 
         $this->redirect('admin');
 
