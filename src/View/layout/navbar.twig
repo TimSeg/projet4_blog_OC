@@ -13,8 +13,14 @@
         </li>
 
             <li>
-                <a href= "{{ url('users!launch') }}" title="Connexion"><i class=""></i> Connexion/Administration </a>
+                <a href= "{{ url('users!launch') }}" title="Connexion"><i class=""></i> Connexion </a>
             </li>
+
+
+            <li>
+                <a href= "{{ url('users!adminredirect') }}" title="Administration"><i class=""></i> Administration </a>
+            </li>
+
 
             <li>
                 <a href="{{ url('users!logout') }}" title="Déconnexion">Déconnexion</a>
