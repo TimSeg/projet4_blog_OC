@@ -13,6 +13,10 @@ use Twig\Loader\FilesystemLoader;
  */
 abstract class MainController
 {
+
+
+
+
     /**
      * @var Environment|null
      */
@@ -79,6 +83,22 @@ abstract class MainController
     {
         return $this->twig->render($view, $params);
     }
+
+
+
+    /**
+     * @param string $message
+     * @param $type
+     */
+    public function setFlash(string $message, $type)
+    {
+        $_SESSION['flash'] = array(
+            'message' => $message,
+            'type'    => $type
+        );
+    }
+
+
 
 
     /**

@@ -23,10 +23,13 @@ class UsersController extends MainController
 
 {
 
+
+
     /**
      * @return array
      */
     private $post_content = [];
+    protected $session = null;
 
 
     private function postDataUser()
@@ -107,7 +110,8 @@ class UsersController extends MainController
         } elseif ($this->session['user']['admin'] === '0') {
             $this->redirect('adminUser');
         }
-        $this->redirect('home');
+
+        return $this->twig->render('error.twig');
 
 
     }
