@@ -30,11 +30,17 @@ class AdminController extends MainController
             $comments = ModelFactory::getModel('Comments')->listData();
             $users = ModelFactory::getModel('Users')->listData();
 
+
+            var_dump($this->session);
+
             return $this->twig->render("admin.twig", [
                 'articles' => $articles,
                 'comments' => $comments,
                 'users' => $users
             ]);
+
+
+
         }
 
         $this->redirect('home.twig');

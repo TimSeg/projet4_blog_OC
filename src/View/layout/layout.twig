@@ -16,6 +16,12 @@
 
 <header>
     <h1>{{ block('title') }}</h1>
+
+    {% if (hasFlash()) %}
+        <p class="flash flash-{{ typeFlash() }} al-cent">{{ messageFlash() }}</p>
+    {% endif %}
+
+
 </header>
 
 {% block main %}{% endblock %}

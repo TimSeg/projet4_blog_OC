@@ -83,32 +83,38 @@ class UsersController extends MainController
                 $name = $user['name'];
                 $id   = $user['id'];
 
+
                 if($user['admin'] === '1'){
                     $this->redirect('admin');
-                }
 
+                }
                 return $this->twig->render('adminUser.twig',['name' => $name, 'id' => $id]);
             }
+
             else echo 'adresse ou mot de passe invalide';
+
         }
 
 
 
         return $this->twig->render('login.twig');
+
     }
 
 
-
+//avoid password typing for admin when session is still open
     public function adminredirectMethod()
     {
 
 
-        //avoid password typing for admin when session is still open
+        $name = $this->session['user']['name'];
+        $id = $this->session['user']['id'];
+
 
         if ($this->session['user']['admin'] === '1') {
             $this->redirect('admin');
         } elseif ($this->session['user']['admin'] === '0') {
-            $this->redirect('adminUser');
+            return $this->twig->render('adminUser.twig',['name' => $name, 'id' => $id]);
         }
 
         return $this->twig->render('error.twig');

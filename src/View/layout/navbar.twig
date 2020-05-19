@@ -1,7 +1,9 @@
+{% block content %}
+
 <nav>
     <ul>
 
-        {% block navbar %}
+
         <li>
             <a href="{{ url('home') }}" title="Home">
                 <i class="fas fa-home fa-fw fa-3x" aria-hidden="true"></i>
@@ -16,7 +18,6 @@
                 <a href= "{{ url('users!launch') }}" title="Connexion"><i class=""></i> Connexion </a>
             </li>
 
-
             <li id="admin-link">
                 <a href= "{{ url('users!adminredirect') }}" title="Administration"><i class=""></i> Administration </a>
             </li>
@@ -25,7 +26,8 @@
             <li>
                 <a href="{{ url('users!logout') }}" title="Déconnexion">Déconnexion</a>
             </li>
-        {% endblock %}
 
     </ul>
 </nav>
+
+{% endblock %}

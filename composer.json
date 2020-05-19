@@ -10,9 +10,7 @@
     },
     "require": {
         "php": "7.3",
-        "twig/twig": "^3.0",
-        "ext-pdo": "*"
-
+        "twig/twig": "^3.0"
 
     },
 
