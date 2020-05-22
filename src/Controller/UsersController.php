@@ -222,6 +222,7 @@ class UsersController extends MainController
         }
         ModelFactory::getModel('users')->deleteData($this->get['id']);
 
+        $this->sessionDestroy();
         $this->redirect('admin');
 
     }
