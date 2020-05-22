@@ -34,7 +34,7 @@ class ArticlesController extends MainController
     {
 
 
-        $articles = ModelFactory::getModel('Articles')->listData();
+        $articles = ModelFactory::getModel('articles')->listData();
 
         return $this->twig->render('articles.twig', ['articles' => $articles]);
     }
@@ -43,8 +43,8 @@ class ArticlesController extends MainController
     public function readMethod()
     {
 
-        $articles = ModelFactory::getModel('Articles')->readData(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
-        $comments = ModelFactory::getModel('Comments')->listData(filter_input(INPUT_GET,'id', FILTER_SANITIZE_NUMBER_INT),  'article_id');
+        $articles = ModelFactory::getModel('articles')->readData(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
+        $comments = ModelFactory::getModel('comments')->listData(filter_input(INPUT_GET,'id', FILTER_SANITIZE_NUMBER_INT),  'article_id');
 
         return $this->twig->render('fullArticle.twig', [
             'article' => $articles,
@@ -77,7 +77,7 @@ class ArticlesController extends MainController
         if (empty($title && $content)) {
             $this->redirect('admin');
         }
-        $createdArticle = ModelFactory::getModel('Articles')->createIt($title,$content);
+        $createdArticle = ModelFactory::getModel('articles')->createIt($title,$content);
         $this->redirect('admin', ['createdArticle' => $createdArticle]);
     }
 
@@ -91,14 +91,14 @@ class ArticlesController extends MainController
     {
         $id_article = $this->get['id'];
 
-        $article_confirmed = ModelFactory::getModel('Comments')->listData($id_article, 'article_id');
+        $article_confirmed = ModelFactory::getModel('comments')->listData($id_article, 'article_id');
 
         if (!empty($article_confirmed))
         {
-            ModelFactory::getModel('Comments')->deleteData($id_article, 'article_id');
+            ModelFactory::getModel('comments')->deleteData($id_article, 'article_id');
         }
 
-        ModelFactory::getModel('Articles')->deleteData($id_article);
+        ModelFactory::getModel('articles')->deleteData($id_article);
 
         $this->redirect('admin');
     }
@@ -116,12 +116,12 @@ class ArticlesController extends MainController
         if (!empty($this->post)) {
             $this->postData();
 
-            ModelFactory::getModel('Articles')->modifyIt($this->get['id'], $this->post_content['title'],$this->post_content['content']);
+            ModelFactory::getModel('articles')->modifyIt($this->get['id'], $this->post_content['title'],$this->post_content['content']);
 
             $this->redirect('admin');
         }
-        $articles = ModelFactory::getModel('Articles')->readData($this->get['id']);
-        $comments = ModelFactory::getModel('Comments')->listData($this->get['id'], 'article_id');
+        $articles = ModelFactory::getModel('articles')->readData($this->get['id']);
+        $comments = ModelFactory::getModel('comments')->listData($this->get['id'], 'article_id');
 
         return $this->render('articlesModify.twig', [
             'articles' => $articles,

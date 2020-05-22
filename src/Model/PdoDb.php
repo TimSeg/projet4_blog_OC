@@ -2,8 +2,8 @@
 
 namespace App\Model;
 
-use App\Model\Factory\PDOFactory;
-use PDO;
+use App\Model\Factory\PdoFactory;
+use Pdo;
 
 /**
  * Class PdoDb
@@ -14,16 +14,16 @@ class PdoDb
 {
     /**
      * PDO Connection
-     * @var PDO
+     * @var Pdo
      */
     private $pdo = null;
 
     /**
      * PdoDb constructor
-     * Receive the PDO Connection & store it
-     * @param PDO $pdo
+     * Receive the Pdo Connection & store it
+     * @param Pdo $pdo
      */
-    public function __construct(PDO $pdo)
+    public function __construct(Pdo $pdo)
     {
         $this->pdo = $pdo;
     }
@@ -64,7 +64,7 @@ class PdoDb
      */
     public function setData(string $query, array $params = [])
     {
-        $req = PDOFactory::getPDO()->prepare($query);
+        $req = PdoFactory::getPDO()->prepare($query);
         return $req->execute($params);
 
        // $PDOStatement = $this->pdo->prepare($query);

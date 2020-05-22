@@ -3,7 +3,7 @@
 
 namespace App\Model;
 
-use App\Model\Factory\PDOFactory;
+use App\Model\Factory\PdoFactory;
 
 class ArticlesModel extends MainModel
 {
@@ -14,7 +14,7 @@ class ArticlesModel extends MainModel
      */
     public function createIt(string $title, string $content)
     {
-        $req = PDOFactory::getPDO()->prepare('INSERT INTO articles(title,content) VALUES(?,?)');
+        $req = PdoFactory::getPDO()->prepare('INSERT INTO articles(title,content) VALUES(?,?)');
         return $req->execute(array($title,$content));
     }
 
@@ -26,7 +26,7 @@ class ArticlesModel extends MainModel
     public function modifyIt(int $id, string $title ,string $content)
     {
         $content = html_entity_decode($content);
-        $req = PDOFactory::getPDO()->prepare('UPDATE articles SET title = ? , content = ? WHERE id = ?');
+        $req = PdoFactory::getPDO()->prepare('UPDATE articles SET title = ? , content = ? WHERE id = ?');
         $req->execute(array($title,$content,$id));
     }
 

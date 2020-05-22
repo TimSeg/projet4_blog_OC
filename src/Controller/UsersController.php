@@ -145,7 +145,7 @@ class UsersController extends MainController
                 return $this->twig->render('error.twig');
             }
 // create new user
-            ModelFactory::getModel('Users')->createData([
+            ModelFactory::getModel('users')->createData([
                 'name' => $user['name'],
                 'email' => $user['email'],
                 'pass' => $pass_encrypted,
@@ -153,7 +153,7 @@ class UsersController extends MainController
             ]);
 
 // create session if new user has completed the form
-                $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
+                $user = ModelFactory::getModel('users')->readData($this->post['email'], 'email');
                 $this->sessionCreate(
                     $user['id'],
                     $user['name'],
@@ -161,7 +161,7 @@ class UsersController extends MainController
                     $user['pass'],
                     $user['admin']
                 );
-                $this->redirect('Articles');
+                $this->redirect('articles');
 
             }
 
@@ -183,8 +183,8 @@ class UsersController extends MainController
         if (!empty($this->post)) {
             $this->postDataUser();
 
-            ModelFactory::getModel('Users')->updateData($this->session['user']['id'], $this->post_content);
-            $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
+            ModelFactory::getModel('users')->updateData($this->session['user']['id'], $this->post_content);
+            $user = ModelFactory::getModel('users')->readData($this->post['email'], 'email');
             $_SESSION['user'] = [];
             $this->sessionCreate(
                 $user['id'],
@@ -200,12 +200,6 @@ class UsersController extends MainController
     }
 
 
-    public function deleteforuserMethod()
-    {
-
-
-    }
-
 
 
     /**
@@ -220,13 +214,13 @@ class UsersController extends MainController
     public function deleteMethod()
     {
         $user_id = $this->get['id'];
-        $confirmed_id = ModelFactory::getModel('Comments')->listData($user_id, 'user_id');
+        $confirmed_id = ModelFactory::getModel('comments')->listData($user_id, 'user_id');
 
         if (!empty($confirmed_id))
         {
-            ModelFactory::getModel('Comments')->deleteData($this->get['id'], 'user_id');
+            ModelFactory::getModel('comments')->deleteData($this->get['id'], 'user_id');
         }
-        ModelFactory::getModel('Users')->deleteData($this->get['id']);
+        ModelFactory::getModel('users')->deleteData($this->get['id']);
 
         $this->redirect('admin');
 

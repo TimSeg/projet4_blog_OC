@@ -2,14 +2,14 @@
 
 namespace App\Model\Factory;
 
-use PDO;
+use Pdo;
 
 /**
  * Class PdoFactory
  * Creates the Connection if it doesn't exist
  * @package App\Model
  */
-class PDOFactory
+class PdoFactory
 {
     /**
      * Stores the Connection
@@ -19,14 +19,14 @@ class PDOFactory
 
     /**
      * Returns the Connection if it exists or creates it before returning it
-     * @return PDO|null
+     * @return Pdo|null
      */
     public static function getPDO()
     {
         require_once '../config/db.php';
 
         if (self::$pdo === null) {
-            self::$pdo = new PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
+            self::$pdo = new Pdo(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
             self::$pdo->exec('SET NAMES UTF8');
         }
 

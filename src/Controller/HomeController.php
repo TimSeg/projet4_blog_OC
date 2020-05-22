@@ -4,7 +4,6 @@ namespace App\Controller;
 
 
 use App\Model\Factory\ModelFactory;
-use App\Model\Factory\PDOFactory;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -26,7 +25,7 @@ class HomeController extends MainController
     public function launchMethod()
     {
 
-        $lastArticle = ModelFactory::getModel('Articles')->getLastArticle();
+        $lastArticle = ModelFactory::getModel('articles')->getLastArticle();
         return $this->twig->render('home.twig', ['articles' => $lastArticle]);
 
 

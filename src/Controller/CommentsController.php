@@ -22,8 +22,8 @@ class CommentsController extends MainController
      */
     public function launchMethod()
     {
-        $user = ModelFactory::getModel('Users')->listData();
-        $comments = ModelFactory::getModel('Comments')->listData();
+        $user = ModelFactory::getModel('users')->listData();
+        $comments = ModelFactory::getModel('comments')->listData();
 
         return $this->render("fullArticle.twig", [
             'comments' => $comments,
@@ -49,7 +49,7 @@ class CommentsController extends MainController
 
 
 
-            ModelFactory::getModel('Comments')->createData([
+            ModelFactory::getModel('comments')->createData([
                 'author'     => $author,
                 'content'    => $content,
                 'user_id'    => $user_id,
@@ -78,11 +78,11 @@ class CommentsController extends MainController
         if (($this->session['user']['admin'] === '0') || ($this->session['user']['admin'] === '1')) {
 
            $comment_id        = $this->get['id'];
-           $comment           = ModelFactory::getModel('Comments')->readData($comment_id);
+           $comment           = ModelFactory::getModel('comments')->readData($comment_id);
            $article_id        = $comment['article_id'];
            $data['moderated'] = 1;
 
-           ModelFactory::getModel('Comments')->updateData($comment_id, $data);
+           ModelFactory::getModel('comments')->updateData($comment_id, $data);
 
            $this->redirect('articles!read', ['id' => $article_id]);
         }
@@ -94,7 +94,7 @@ class CommentsController extends MainController
     public function approvedMethod()
     {
 
-        ModelFactory::getModel('Comments')->updateData($this->get['id'], ['moderated' => 0]);
+        ModelFactory::getModel('comments')->updateData($this->get['id'], ['moderated' => 0]);
 
         $this->redirect('admin');
 
@@ -111,7 +111,7 @@ class CommentsController extends MainController
      */
     public function deleteMethod()
     {
-        ModelFactory::getModel('Comments')->deleteData($this->get['id']);
+        ModelFactory::getModel('comments')->deleteData($this->get['id']);
 
         $this->redirect('admin');
     }
