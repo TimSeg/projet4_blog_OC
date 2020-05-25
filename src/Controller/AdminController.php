@@ -33,7 +33,7 @@ class AdminController extends MainController
 
             var_dump($this->session);
 
-            return $this->twig->render("admin.twig", [
+            return $this->twig->render("Admin.twig", [
                 'articles' => $articles,
                 'comments' => $comments,
                 'users' => $users
@@ -43,7 +43,7 @@ class AdminController extends MainController
 
         }
 
-        $this->redirect('home.twig');
+        $this->redirect('Home.twig');
 
     }
 }

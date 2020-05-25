@@ -32,11 +32,12 @@ class ArticlesController extends MainController
      */
     public function launchMethod()
     {
+        $articles = ModelFactory::getModel('articles')->getArticles();
 
 
-        $articles = ModelFactory::getModel('articles')->listData();
+        //$articles = ModelFactory::getModel('articles')->listData();
 
-        return $this->twig->render('articles.twig', ['articles' => $articles]);
+        return $this->twig->render('Articles.twig', ['articles' => $articles]);
     }
 
 
@@ -46,7 +47,7 @@ class ArticlesController extends MainController
         $articles = ModelFactory::getModel('articles')->readData(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
         $comments = ModelFactory::getModel('comments')->listData(filter_input(INPUT_GET,'id', FILTER_SANITIZE_NUMBER_INT),  'article_id');
 
-        return $this->twig->render('fullArticle.twig', [
+        return $this->twig->render('FullArticle.twig', [
             'article' => $articles,
             'comments' => $comments
         ]);
@@ -75,10 +76,10 @@ class ArticlesController extends MainController
         $title   = $this->post['title'];
         $content = $this->post['content'];
         if (empty($title && $content)) {
-            $this->redirect('admin');
+            $this->redirect('Admin');
         }
         $createdArticle = ModelFactory::getModel('articles')->createIt($title,$content);
-        $this->redirect('admin', ['createdArticle' => $createdArticle]);
+        $this->redirect('Admin', ['createdArticle' => $createdArticle]);
     }
 
     /**
@@ -100,7 +101,7 @@ class ArticlesController extends MainController
 
         ModelFactory::getModel('articles')->deleteData($id_article);
 
-        $this->redirect('admin');
+        $this->redirect('Admin');
     }
 
 
@@ -118,12 +119,12 @@ class ArticlesController extends MainController
 
             ModelFactory::getModel('articles')->modifyIt($this->get['id'], $this->post_content['title'],$this->post_content['content']);
 
-            $this->redirect('admin');
+            $this->redirect('Admin');
         }
         $articles = ModelFactory::getModel('articles')->readData($this->get['id']);
         $comments = ModelFactory::getModel('comments')->listData($this->get['id'], 'article_id');
 
-        return $this->render('articlesModify.twig', [
+        return $this->render('ArticlesModify.twig', [
             'articles' => $articles,
             'comments' => $comments
         ]);

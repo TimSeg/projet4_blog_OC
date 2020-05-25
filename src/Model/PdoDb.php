@@ -16,7 +16,7 @@ class PdoDb
      * PDO Connection
      * @var Pdo
      */
-    private $pdo = null;
+    private $pdo;
 
     /**
      * PdoDb constructor

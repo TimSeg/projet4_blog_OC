@@ -25,7 +25,7 @@ class CommentsController extends MainController
         $user = ModelFactory::getModel('users')->listData();
         $comments = ModelFactory::getModel('comments')->listData();
 
-        return $this->render("fullArticle.twig", [
+        return $this->render("FullArticle.twig", [
             'comments' => $comments,
             'user'     => $user
         ]);
@@ -61,7 +61,7 @@ class CommentsController extends MainController
 
         }
 
-        return $this->twig->render('error.twig');
+        return $this->twig->render('Error.twig');
 
     }
 
@@ -84,9 +84,9 @@ class CommentsController extends MainController
 
            ModelFactory::getModel('comments')->updateData($comment_id, $data);
 
-           $this->redirect('articles!read', ['id' => $article_id]);
+           $this->redirect('Articles!read', ['id' => $article_id]);
         }
-        return $this->twig->render('error.twig');
+        return $this->twig->render('Error.twig');
     }
 
 
@@ -96,7 +96,7 @@ class CommentsController extends MainController
 
         ModelFactory::getModel('comments')->updateData($this->get['id'], ['moderated' => 0]);
 
-        $this->redirect('admin');
+        $this->redirect('Admin');
 
     }
 
@@ -113,7 +113,7 @@ class CommentsController extends MainController
     {
         ModelFactory::getModel('comments')->deleteData($this->get['id']);
 
-        $this->redirect('admin');
+        $this->redirect('Admin');
     }
 
 

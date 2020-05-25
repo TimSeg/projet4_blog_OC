@@ -24,7 +24,7 @@
                 {% for article in articles %}
 
                     <p> {{ article.title }} <br>{{ article.content | raw }} <br>
-                        <a href="{{ url('Articles!read', {'id': article.id}, {'id': comment.article_id}) }}">Lire/Commenter ce chapitre</a>
+                        <a href="{{ url('Articles!read', {'id': article.id}) }}">Lire/Commenter ce chapitre</a>
                     </p>
 
                 {% endfor %}

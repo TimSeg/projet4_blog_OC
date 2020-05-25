@@ -85,10 +85,10 @@ class UsersController extends MainController
 
 
                 if($user['admin'] === '1'){
-                    $this->redirect('admin');
+                    $this->redirect('Admin');
 
                 }
-                return $this->twig->render('adminUser.twig',['name' => $name, 'id' => $id]);
+                return $this->twig->render('AdminUser.twig',['name' => $name, 'id' => $id]);
             }
 
             else echo 'adresse ou mot de passe invalide';
@@ -97,7 +97,7 @@ class UsersController extends MainController
 
 
 
-        return $this->twig->render('login.twig');
+        return $this->twig->render('Login.twig');
 
     }
 
@@ -112,12 +112,12 @@ class UsersController extends MainController
 
 
         if ($this->session['user']['admin'] === '1') {
-            $this->redirect('admin');
+            $this->redirect('Admin');
         } elseif ($this->session['user']['admin'] === '0') {
-            return $this->twig->render('adminUser.twig',['name' => $name, 'id' => $id]);
+            return $this->twig->render('AdminUser.twig',['name' => $name, 'id' => $id]);
         }
 
-        return $this->twig->render('error.twig');
+        return $this->twig->render('Error.twig');
 
 
     }
@@ -142,7 +142,7 @@ class UsersController extends MainController
 
 // check if mail already exists in database -> send to error page
             if ($this->post['email'] === $users['email']) {
-                return $this->twig->render('error.twig');
+                return $this->twig->render('Error.twig');
             }
 // create new user
             ModelFactory::getModel('users')->createData([
@@ -161,7 +161,7 @@ class UsersController extends MainController
                     $user['pass'],
                     $user['admin']
                 );
-                $this->redirect('articles');
+                $this->redirect('Articles');
 
             }
 
@@ -194,7 +194,7 @@ class UsersController extends MainController
                 $user['admin']
             );
 
-            $this->redirect('adminUser');
+            $this->redirect('AdminUser');
         }
 
     }
@@ -209,7 +209,7 @@ class UsersController extends MainController
      * @throws SyntaxError
      */
 
-    // delete a user - only for admin
+    // delete a user
 
     public function deleteMethod()
     {
@@ -223,7 +223,7 @@ class UsersController extends MainController
         ModelFactory::getModel('users')->deleteData($this->get['id']);
 
         $this->sessionDestroy();
-        $this->redirect('admin');
+        $this->redirect('Admin');
 
     }
 
@@ -238,7 +238,7 @@ class UsersController extends MainController
     public function logoutMethod()
     {
         $this->sessionDestroy();
-        $this->redirect('home');
+        $this->redirect('Home');
 
 
     }

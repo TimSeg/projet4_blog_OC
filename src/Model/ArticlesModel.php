@@ -44,6 +44,12 @@ class ArticlesModel extends MainModel
         return $this->database->getAllData($query);
     }
 
+    public function getArticles()
+    {
+        $query = 'SELECT * FROM articles ORDER BY id';
+
+        return $this->database->getAllData($query);
+    }
 
 
 
