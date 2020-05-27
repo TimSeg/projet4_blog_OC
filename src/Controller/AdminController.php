@@ -31,7 +31,7 @@ class AdminController extends MainController
             $users = ModelFactory::getModel('users')->listData();
 
 
-            var_dump($this->session);
+
 
             return $this->twig->render("Admin.twig", [
                 'articles' => $articles,

@@ -13,19 +13,19 @@ use Pdo;
 class PdoDb
 {
     /**
-     * PDO Connection
+     * Pdo Connection
      * @var Pdo
      */
-    private $pdo;
+    private $Pdo;
 
     /**
      * PdoDb constructor
      * Receive the Pdo Connection & store it
-     * @param Pdo $pdo
+     * @param Pdo $Pdo
      */
-    public function __construct(Pdo $pdo)
+    public function __construct(Pdo $Pdo)
     {
-        $this->pdo = $pdo;
+        $this->Pdo = $Pdo;
     }
 
     /**
@@ -36,7 +36,7 @@ class PdoDb
      */
     public function getData(string $query, array $params = [])
     {
-        $PDOStatement = $this->pdo->prepare($query);
+        $PDOStatement = $this->Pdo->prepare($query);
         $PDOStatement->execute($params);
 
         return $PDOStatement->fetch();
@@ -50,8 +50,8 @@ class PdoDb
      */
     public function getAllData(string $query, array $params = [])
     {
-        $PDOStatement = $this->pdo->prepare($query);
-        $PDOStatement->execute($params);
+       $PDOStatement = $this->Pdo->prepare($query);
+       $PDOStatement->execute($params);
 
         return $PDOStatement->fetchAll();
     }
@@ -64,10 +64,8 @@ class PdoDb
      */
     public function setData(string $query, array $params = [])
     {
-        $req = PdoFactory::getPDO()->prepare($query);
+        $req = PdoFactory::getPdo()->prepare($query);
         return $req->execute($params);
 
-       // $PDOStatement = $this->pdo->prepare($query);
-       // return $PDOStatement->execute($params);
     }
 }

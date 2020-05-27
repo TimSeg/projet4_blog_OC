@@ -15,21 +15,21 @@ class PdoFactory
      * Stores the Connection
      * @var null
      */
-    private static $pdo = null;
+    private static $Pdo = null;
 
     /**
      * Returns the Connection if it exists or creates it before returning it
      * @return Pdo|null
      */
-    public static function getPDO()
+    public static function getPdo()
     {
         require_once '../config/db.php';
 
-        if (self::$pdo === null) {
-            self::$pdo = new Pdo(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
-            self::$pdo->exec('SET NAMES UTF8');
+        if (self::$Pdo === null) {
+            self::$Pdo = new Pdo(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
+            self::$Pdo->exec('SET NAMES UTF8');
         }
 
-        return self::$pdo;
+        return self::$Pdo;
     }
 }

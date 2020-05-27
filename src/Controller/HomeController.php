@@ -28,11 +28,7 @@ class HomeController extends MainController
         $lastArticle = ModelFactory::getModel('articles')->getLastArticle();
         return $this->twig->render('Home.twig', ['articles' => $lastArticle]);
 
-
-
     }
-
-
 
 }
 

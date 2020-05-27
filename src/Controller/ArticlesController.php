@@ -32,10 +32,8 @@ class ArticlesController extends MainController
      */
     public function launchMethod()
     {
-        $articles = ModelFactory::getModel('articles')->getArticles();
 
-
-        //$articles = ModelFactory::getModel('articles')->listData();
+        $articles = ModelFactory::getModel('articles')->listData();
 
         return $this->twig->render('Articles.twig', ['articles' => $articles]);
     }

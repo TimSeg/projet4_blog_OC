@@ -14,7 +14,7 @@ class ArticlesModel extends MainModel
      */
     public function createIt(string $title, string $content)
     {
-        $req = PdoFactory::getPDO()->prepare('INSERT INTO articles(title,content) VALUES(?,?)');
+        $req = PdoFactory::getPdo()->prepare('INSERT INTO Articles(title,content) VALUES(?,?)');
         return $req->execute(array($title,$content));
     }
 
@@ -26,7 +26,7 @@ class ArticlesModel extends MainModel
     public function modifyIt(int $id, string $title ,string $content)
     {
         $content = html_entity_decode($content);
-        $req = PdoFactory::getPDO()->prepare('UPDATE articles SET title = ? , content = ? WHERE id = ?');
+        $req = PdoFactory::getPdo()->prepare('UPDATE Articles SET title = ? , content = ? WHERE id = ?');
         $req->execute(array($title,$content,$id));
     }
 
@@ -39,18 +39,9 @@ class ArticlesModel extends MainModel
 
     public function getLastArticle()
     {
-        $query = 'SELECT * FROM articles ORDER BY id DESC LIMIT 1';
+        $query = 'SELECT * FROM Articles ORDER BY id DESC LIMIT 1';
 
         return $this->database->getAllData($query);
     }
-
-    public function getArticles()
-    {
-        $query = 'SELECT * FROM articles ORDER BY id';
-
-        return $this->database->getAllData($query);
-    }
-
-
 
 }

@@ -12,5 +12,4 @@ namespace App\Model;
 class CommentsModel extends MainModel
 {
 
-
 }
