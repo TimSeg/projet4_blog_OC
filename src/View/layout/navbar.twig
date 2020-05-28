@@ -1,33 +1,34 @@
 {% block content %}
 
-<nav>
-    <ul>
 
 
-        <li>
-            <a href="{{ url('Home') }}" title="Home">
-                <i class="fas fa-home fa-fw fa-3x" aria-hidden="true"></i>
-            </a>
-        </li>
-
-        <li>
-            <a href= "{{ url('Articles!launch') }}" title="Tous les chapitres"><i class="fas fa-book-open"></i> Chapitres</a>
-        </li>
-
-            <li>
-                <a href= "{{ url('Users!launch') }}" title="Connexion"><i class=""></i> Connexion </a>
-            </li>
-
-            <li id="admin-link">
-                <a href= "{{ url('Users!adminredirect') }}" title="Administration"><i class=""></i> Administration </a>
-            </li>
 
 
-            <li>
+
+
+        <nav>
+
+                <a href="{{ url('Home') }}" title="Home"> Accueil </a>
+
+
+
+                <a href= "{{ url('Articles!launch') }}" title="Tous les chapitres"> Chapitres</a>
+
+
+
+                <a href= "{{ url('Users!launch') }}" title="Connexion"> Connexion </a>
+
+
+
+                <a href= "{{ url('Users!adminredirect') }}" title="Administration"> Administration </a>
+
+
+
+
                 <a href="{{ url('Users!logout') }}" title="Déconnexion">Déconnexion</a>
-            </li>
 
-    </ul>
-</nav>
+        </nav>
+
+
 
 {% endblock %}

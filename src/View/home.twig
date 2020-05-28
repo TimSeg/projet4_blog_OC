@@ -1,48 +1,31 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}Jean Forteroche - Billet simple pour l'Alaska{% endblock %}
+
 
 {% block description %}Blog - Jean Forteroche{% endblock %}
 
 {% block main %}
-    <main id="home">
 
 
-
-
-
-
-
-
-
-
-        <section>
-            <h2>Bienvenue</h2>
-
-            <p>Sur ce blog, vous pourrez suivre la publication du dernier roman de Jean Forteroche : Billet simple pour l'Alaska.</p>
-            <p>Pour accéder à l'ensemble des fonctionnalités : <a href="index.php?access=users">inscrivez-vous ici</a>.</p>
-            <p>Pour lire tous les chapitres depuis le début : <a href="index.php?access=articles">c'est ici</a> </p>
-        </section>
-
-
+        <h1>Jean Forteroche - Billet simple pour l'Alaska</h1>
 
         <article id="slideshow">
 
 
 
             <figure class="slide fade">
-                <img src="images/alaska_1.jpg" alt="repérage">
-                <figcaption class="slide-text">Choississez une station proche de vous ( Cliquez sur le marqueur ).</figcaption>
+                <img src="images/alaska_1.jpg">
+                <figcaption class="slide-text">Le nouveau roman de Jean Forteroche en avant première</figcaption>
             </figure>
 
             <figure class="slide fade">
-                <img src="images/alaska_2.jpg" alt="votre identité">
-                <figcaption class="slide-text">Entrez vos informations personnelles puis signez.</figcaption>
+                <img src="images/alaska_2.jpg">
+                <figcaption class="slide-text">Lisez chaque nouveau chapitre dès sa publication</figcaption>
             </figure>
 
             <figure class="slide fade">
-                <img src="images/alaska_3.jpg" alt="réservation limitée">
-                <figcaption class="slide-text">Une fois réservé, vous disposez de 20 minutes pour récupérer votre vélo.</figcaption>
+                <img src="images/alaska_3.jpg">
+                <figcaption class="slide-text">Echangez vos impressions avec les autres abonnés et Jean lui-même</figcaption>
             </figure>
 
             <span id="prev-arrow"><i class="fas fa-chevron-left"></i></span>
@@ -64,20 +47,18 @@
 
 
 
+        <section>
+            <h2>Bienvenue</h2>
 
-
-
-
-
-
-
-
-
+            <p>Sur ce blog, vous pourrez suivre la publication du dernier roman de Jean Forteroche : Billet simple pour l'Alaska.</p>
+            <p>Pour accéder à l'ensemble des fonctionnalités : <a href="index.php?access=Users">inscrivez-vous ici</a>.</p>
+            <p>Pour lire tous les chapitres depuis le début : <a href="index.php?access=Articles">c'est ici</a> </p>
+        </section>
 
 
 
         <section>
-            <h2>Dernier chapitre en date publié</h2>
+            <h3>Dernier chapitre en date publié</h3>
 
 
             <div>
@@ -91,7 +72,7 @@
 
 
 
-    </main>
+
 
     <script src="js/script.js"></script>
     <script src="js/Slider.js"></script>

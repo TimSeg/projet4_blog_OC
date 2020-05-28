@@ -1,18 +1,64 @@
 body {
-
+    font-size: 62.5%;
+    margin: 0;
     text-align: center;
+    background-color: white;
+
 }
 
 main {
-    padding: 10px;
+
     background-color: white;
 }
 
-ul {
+nav {
+    position: fixed;
     display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
+    align-items: center;
+    top: 0;
+    left: 0;
+    background-color: white;
+    width: 100%;
+    height: 100px;
+    font-size: 1.3rem;
+    z-index: 3;
+}
+
+body{
+    padding-top: 100px;
+}
+
+h1,
+h2,
+p,
+ul,
+label,
+.slide-text{
+    font-family: "Roboto", sans-serif;
+}
+
+
+h1{
+    font-size: 1.8rem;
+    margin-top: 100px;
+}
+
+h1+p{
+    font-size: 1.2rem;
+}
+
+ul{
     list-style: none;
 }
+
+a{
+    text-decoration: none;
+}
+
+
+
 
 /*
 #admin-link{
@@ -44,7 +90,7 @@ img{
     display: block;
     align-items: center;
     position: absolute;
-    top: 45%;
+    top: 60%;
     left: 0;
     color: white;
     font-size: 0.8rem;
@@ -57,7 +103,7 @@ img{
 
 .fa-chevron-right{
     position: absolute;
-    top: 45%;
+    top: 60%;
     right: 0;
     color: white;
     font-size: 0.8rem;
@@ -107,7 +153,7 @@ img{
     margin-top: 15px;
     font-size: 1.2rem;
     color: white;
-    background-color: #FC4205;
+    background-color: #297DB5;
     padding: 0.3rem;
     border-radius: 5px;
 }
@@ -137,3 +183,57 @@ img{
 /* SLIDESHOW ENDS */
 
 
+
+
+
+
+/*------BREAKPOINTS------*/
+
+/*pad screen*/
+
+@media screen and (min-width: 768px){
+
+
+
+    .fa-chevron-left{
+        font-size: 0.8rem;
+        border-bottom-right-radius: 20px;
+        border-top-right-radius: 20px;
+        padding: 10px 10px 10px 2px;
+        z-index: 1;
+    }
+
+    .fa-chevron-right{
+        font-size: 0.8rem;
+        border-bottom-left-radius: 20px;
+        border-top-left-radius: 20px;
+        padding: 10px 2px 10px 10px;
+        z-index: 1;
+    }
+
+
+
+}
+
+/*desktop screen*/
+
+@media screen and (min-width: 968px){
+
+
+
+    .fa-chevron-left{
+        font-size: 1.6rem;
+        border-bottom-right-radius: 50px;
+        border-top-right-radius: 50px;
+        padding: 20px 20px 20px 5px;
+        z-index: 1;
+    }
+
+    .fa-chevron-right{
+        font-size: 1.6rem;
+        border-bottom-left-radius: 50px;
+        border-top-left-radius: 50px;
+        padding: 20px 5px 20px 20px;
+        z-index: 1;
+    }
+}

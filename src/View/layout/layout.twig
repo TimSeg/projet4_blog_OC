@@ -14,17 +14,18 @@
 
 {{ include('layout/navbar.twig') }}
 
-<header>
-    <h1>{{ block('title') }}</h1>
+
+{% block main %}
+
+
+
 
     {% if (hasFlash()) %}
         <p class="flash flash-{{ typeFlash() }} al-cent">{{ messageFlash() }}</p>
     {% endif %}
 
 
-</header>
-
-{% block main %}{% endblock %}
+{% endblock %}
 
 {{ include('layout/footer.twig') }}
 

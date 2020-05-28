@@ -38,10 +38,10 @@ class Slider {
         }
         for (let i = 0; i < this.slides.length; i++) {
         this.slides[i].style.display = "none";
-        this.dots[i].style.backgroundColor = "red"; 
+        this.dots[i].style.backgroundColor = "black";
         }
         this.slides[this.slideIndex-1].style.display = "block";
-        this.dots[this.slideIndex-1].style.backgroundColor = "green";
+        this.dots[this.slideIndex-1].style.backgroundColor = "blue";
          
     }
 
