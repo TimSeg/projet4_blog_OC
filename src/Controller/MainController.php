@@ -35,14 +35,14 @@ abstract class MainController
     {
         $this->twig = new Environment(new FilesystemLoader('../src/View'), array('cache' => false,));
 
-
         $this->twig->addExtension(new PhpAdditionalExtension());
+
 
         $this->post     = filter_input_array(INPUT_POST);
         $this->get      = filter_input_array(INPUT_GET);
 
         $this->session = filter_var_array($_SESSION);
-
+        $this->twig->addGlobal('session', $this->session);
     }
 
     /**

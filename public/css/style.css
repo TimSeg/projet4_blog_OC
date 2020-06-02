@@ -32,11 +32,9 @@ body{
 
 h1,
 h2,
-p,
-ul,
-label,
-.slide-text{
-    font-family: "Roboto", sans-serif;
+nav
+{
+    font-family: "Amatic SC", sans-serif;
 }
 
 
@@ -57,15 +55,6 @@ a{
     text-decoration: none;
 }
 
-
-
-
-/*
-#admin-link{
-    display: none;
-
-}
-*/
 
 
 /* SLIDESHOW */

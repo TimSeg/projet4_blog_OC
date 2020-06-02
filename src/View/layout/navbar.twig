@@ -3,29 +3,50 @@
 
 
 
-
-
-
         <nav>
 
-                <a href="{{ url('Home') }}" title="Home"> Accueil </a>
+
+
+                {% if session.user.admin is defined %}
+
+                        <a href="{{ url('Home') }}" title="Home"> Accueil </a>
 
 
 
-                <a href= "{{ url('Articles!launch') }}" title="Tous les chapitres"> Chapitres</a>
+                        <a href= "{{ url('Articles!launch') }}" title="Tous les chapitres"> Chapitres</a>
 
 
 
-                <a href= "{{ url('Users!launch') }}" title="Connexion"> Connexion </a>
+                        <a href= "{{ url('Users!adminredirect') }}" title="Administration"> Administration </a>
 
 
 
-                <a href= "{{ url('Users!adminredirect') }}" title="Administration"> Administration </a>
+                        <a href="{{ url('Users!logout') }}" title="Déconnexion">Déconnexion</a>
+
+
+
+                {% else %}
+
+                        <a href="{{ url('Home') }}" title="Home"> Accueil </a>
+
+
+
+                        <a href= "{{ url('Articles!launch') }}" title="Tous les chapitres"> Chapitres</a>
+
+
+                        <a href= "{{ url('Users!launch') }}" title="Connexion"> Connexion </a>
+
+
+
+                {% endif %}
 
 
 
 
-                <a href="{{ url('Users!logout') }}" title="Déconnexion">Déconnexion</a>
+
+
+
+
 
         </nav>
 

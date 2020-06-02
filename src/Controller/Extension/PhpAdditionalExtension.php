@@ -24,9 +24,6 @@ class PhpAdditionalExtension extends AbstractExtension
     {
         return array(
             new TwigFunction('url', array($this, 'url')),
-            new TwigFunction('hasFlash', array($this, 'hasFlash')),
-            new TwigFunction('typeFlash', array($this, 'typeFlash')),
-            new TwigFunction('messageFlash', array($this, 'messageFlash'))
         );
     }
 
@@ -41,32 +38,6 @@ class PhpAdditionalExtension extends AbstractExtension
         $params['access'] = $page;
         return 'index.php?' . http_build_query($params);
     }
-
-
-    /**
-     * @return bool
-     */
-    public function hasFlash() {
-        return empty($this->session['flash']) == false;
-    }
-
-    public function typeFlash()
-    {
-        if (isset($this->session['flash'])){
-            return $this->session['flash']['type'];
-        }
-    }
-
-    public function messageFlash()
-    {
-        if (isset($this->session['flash'])){
-            echo filter_var($this->session['flash']['message']);
-            unset($_SESSION['flash']);
-        }
-    }
-
-
-
 
 }
 

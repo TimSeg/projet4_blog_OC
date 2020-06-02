@@ -88,7 +88,8 @@ class UsersController extends MainController
                     $this->redirect('Admin');
 
                 }
-                return $this->twig->render('AdminUser.twig',['name' => $name, 'id' => $id]);
+                return $this->twig->render('Welcome.twig',['name' => $name, 'id' => $id]);
+
             }
 
             else echo 'adresse ou mot de passe invalide';
