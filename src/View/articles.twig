@@ -17,15 +17,20 @@
         </section>
 
         <section>
-            <h2>Billet simple pour l'Alaska</h2>
+            <h3>Billet simple pour l'Alaska</h3>
 
 
-            <div>
+            <div class="articles-reading">
                 {% for article in articles %}
 
-                    <p> {{ article.title }} <br>{{ article.content | raw }} <br>
-                        <a href="{{ url('Articles!read', {'id': article.id}) }}">Lire/Commenter ce chapitre</a>
-                    </p>
+
+
+                    <p class="article-title">{{ article.title }}</p>
+
+                    <p class="article-content">{{ article.content | raw }}</p>
+
+                    <a class="link-to-article" href="{{ url('Articles!read', {'id': article.id}) }}">Lire/Commenter ce chapitre</a>
+
 
                 {% endfor %}
             </div>

@@ -7,7 +7,7 @@
 
     <h2>Lecture du chapitre</h2>
 
-
+<div class="articles-reading">
 
     <article>
         <h3>{{ article.title }}</h3>
@@ -15,15 +15,17 @@
     </article>
 
 
+    <h3>Les commentaires sur ce chapitre :</h3>
+
     {% for comment in comments %}
 
-    <p>Écrit par : <span>{{ comment.author }}</span>, le <span>{{ comment.created_date }}</span></p>
-    <p>{{ comment.content | nl2br}}</p>
+    <p>Écrit par : <span class="author-name">{{ comment.author }}</span>, le <span>{{ comment.created_date }}</span></p>
+    <p class="comment-content">{{ comment.content | nl2br}}</p>
         <a class="btn-report" href="{{ url('Comments!report',{'id': comment.id}, {'id':comment.post_id}) }}">Signaler le commentaire
             <i class="fas fa-exclamation-triangle"></i>
         </a>
     {% endfor %}
-
+</div>
 
     <section>
         <h1>Ajoutez un commentaire sur ce chapitre : {{ article.title }}</h1>

@@ -9,19 +9,19 @@
 
                 {% if session.user.admin is defined %}
 
-                        <a href="{{ url('Home') }}" title="Home"> Accueil </a>
+                        <a class="nav-links" href="{{ url('Home') }}" title="Home"> Accueil </a>
 
 
 
-                        <a href= "{{ url('Articles!launch') }}" title="Tous les chapitres"> Chapitres</a>
+                        <a class="nav-links" href= "{{ url('Articles!launch') }}" title="Tous les chapitres"> Chapitres</a>
 
 
 
-                        <a href= "{{ url('Users!adminredirect') }}" title="Administration"> Administration </a>
+                        <a class="nav-links" href= "{{ url('Users!adminredirect') }}" title="Administration"> Administration </a>
 
 
 
-                        <a href="{{ url('Users!logout') }}" title="Déconnexion">Déconnexion</a>
+                        <a class="nav-links" href="{{ url('Users!logout') }}" title="Déconnexion">Déconnexion</a>
 
 
 
