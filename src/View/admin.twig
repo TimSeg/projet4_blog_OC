@@ -103,18 +103,18 @@
             <table>
                 <caption>Tableau des utilisateurs</caption>
                 <thead>
-                <tr>
-                    <th scope="col">nom affiché</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Supprimer utilisateur</th>
+                <tr >
+                    <th class="table-line" scope="col">nom affiché</th>
+                    <th class="table-line" scope="col">Email</th>
+                    <th class="table-line" scope="col">Supprimer utilisateur</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for user in users %}
                     <tr>
-                        <td>{{ user.name }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>
+                        <td class="table-line">{{ user.name }}</td>
+                        <td class="table-line">{{ user.email }}</td>
+                        <td class="table-line">
                             <a href="{{ url('Users!delete', {'id': user.id}) }}">
                                 <i class="fas fa-times-circle fa-fw fa-lg"></i>
                             </a>

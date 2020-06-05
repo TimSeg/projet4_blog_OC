@@ -256,9 +256,15 @@ form label{
     font-size: 1rem;
 }
 
+.admin-section table{
+    margin: 0 auto;
+    font-size: 1rem;
+}
 
-
-
+.table-line{
+    padding: 3px;
+    border: 1px solid black;
+}
 
 
 /*------BREAKPOINTS------*/
