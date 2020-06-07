@@ -3,8 +3,8 @@ body {
     font-size: 62.5%;
     margin: 0;
     text-align: center;
-    background-color: white;
-
+    padding-top: 100px;
+    background-color: #A9A9A9;
 }
 
 nav {
@@ -22,15 +22,6 @@ nav {
     z-index: 3;
 }
 
-body{
-    padding-top: 100px;
-    background-color: darkgrey;
-}
-
-main{
-    background-color: darkgrey;
-}
-
 
 h1,
 h2,
@@ -39,8 +30,9 @@ nav
     font-family: "Amatic SC", sans-serif;
 }
 
-p{
-    font-family: 'Roboto', sans-serif;
+p,
+legend{
+    font-family: "Roboto", sans-serif;
     font-size: 1rem;
 }
 
@@ -72,7 +64,7 @@ a{
     margin-top: 20px;
     display: flex;
     justify-content: space-around;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
 }
 
 
@@ -89,8 +81,6 @@ footer{
 .footer-icon{
     font-size: 2rem;
 }
-
-
 
 
 /* SLIDESHOW */
@@ -261,10 +251,23 @@ form label{
     font-size: 1rem;
 }
 
-.table-line{
+.table-line,
+.reported-comment-line{
     padding: 3px;
     border: 1px solid black;
 }
+
+.fa-times-circle,
+.fa-exclamation-triangle,
+.warning{
+ color: firebrick;
+}
+
+.fa-check{
+    color: darkgreen;
+}
+
+
 
 
 /*------BREAKPOINTS------*/

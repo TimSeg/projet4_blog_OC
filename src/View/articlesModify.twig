@@ -16,37 +16,36 @@
 
 
 
-    <h1> Modification du {{ articles.title }}</h1>
-    <ul>
-        <li>
+    <h1> Modification du chapitre : {{ articles.title }}</h1>
+
+
             <form action="{{ url('Articles!modify', {'id': articles.id }) }}" method="post">
                 <label for="title">Titre</label>
                 <input id="title" type="text" name="title" value="{{ articles.title }}" required>
                 <label for="content">Contenu</label>
                 <textarea id="content" name="content" rows="5" cols="100" maxlength="255" required>{{ articles.content }}</textarea>
-                <input type="reset" value="Vider">
                 <input type="submit" value="Mettre à jour">
             </form>
-        </li>
-        <li><h2>Commentaires associés:</h2></li>
-        <li>
-            <ul class="full-comment">
+
+        <h2>Commentaires associés:</h2>
+
+            <div class="full-comment">
                 {% for comment in comments %}
-                    <ul class="comment-card">
-                        <li>{{ comment.author }}</li>
-                        <li>{{ comment.content | nl2br }}</li>
-                        <li>{{ comment.created_date }}</li>
-                        <li>
+                    <div class="comment-card">
+                        <p class="author-name">Auteur : {{ comment.author }}</p>
+                        <p class="comment-content">{{ comment.content | nl2br }}</p>
+                        <p>posté le {{ comment.created_date }}</p>
+                        <p>
                             <a class="btn-grey" href="{{ url('Comments!delete', {'id': comment.id}) }}">Suppression du commentaire
                                 <i class="fas fa-times-circle fa-fw fa-lg"></i>
                             </a>
-                        </li>
-                    </ul>
+                        </p>
+                    </div>
                 {% endfor %}
-            </ul>
-        </li>
-        <li><a href="{{ url('Admin') }}">Panneau de contrôle</a></li>
-    </ul>
+            </div>
+
+        <a class="back-links" href="{{ url('Admin') }}">Retour au panneau de contrôle</a>
+
 
 
 

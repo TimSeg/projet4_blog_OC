@@ -24,7 +24,7 @@
 
 
         <article>
-            <h3>Création d'un article</h3>
+            <h3>Création d'un chapitre</h3>
 
             <form class="article-writing" method="post" action="{{ url('articles!create') }}" enctype="multipart/form-data">
                 <ul>
@@ -49,7 +49,7 @@
             <h3 id="chapters">Espace de gestion des chapitres créés</h3>
 
             <table>
-                <caption>Recensement des chapitres</caption>
+
                 <thead>
                 <tr>
                     <th scope="col">Titre du chapitre</th>
@@ -76,22 +76,22 @@
             <h3 id="comments">Espace de gestion des commentaires créés</h3>
 
             <table>
-                <caption>Commentaires signalés<i class="fas fa-exclamation-triangle"></i></caption>
+
                 <thead>
                 <tr>
                     <th scope="col">Auteur</th>
                     <th scope="col">Contenu</th>
-                    <th scope="col">Poster / Supprimer</th>
+                    <th scope="col">Valider / Supprimer</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for comment in comments %}
                     {% if comment.moderated == 1 %}
                         <tr>
-                            <td>{{ comment.author }} </td>
-                            <td>{{ comment.content | nl2br }} </td>
-                            <td><a href="{{ url('Comments!approved', {'id': comment.id}) }}">Poster</a></td>
-                            <td><a class="btn-delete" href="#">Supprimer<i class="fas fa-times-circle fa-fw fa-lg"></i></a></td>
+                            <td class="reported-comment-line">{{ comment.author }} </td>
+                            <td class="reported-comment-line">{{ comment.content | nl2br }} </td>
+                            <td class="reported-comment-line"><a href="{{ url('Comments!approved', {'id': comment.id}) }}">Valider<i class="fas fa-check"></i></a></td>
+                            <td class="reported-comment-line"><a class="btn-delete" href="#">Supprimer<i class="fas fa-times-circle fa-fw fa-lg"></i></a></td>
                         </tr>
                     {% endif %}
                 {% endfor %}

@@ -162,7 +162,7 @@ class UsersController extends MainController
                     $user['pass'],
                     $user['admin']
                 );
-                $this->redirect('Articles');
+                return $this->twig->render('NewUser.twig');
 
             }
 
@@ -224,7 +224,7 @@ class UsersController extends MainController
         ModelFactory::getModel('users')->deleteData($this->get['id']);
 
         $this->sessionDestroy();
-        $this->redirect('Admin');
+        return $this->twig->render('DeleteConfirmation.twig');
 
     }
 
@@ -239,8 +239,7 @@ class UsersController extends MainController
     public function logoutMethod()
     {
         $this->sessionDestroy();
-        $this->redirect('Home');
-
+        return $this->twig->render('LogoutConfirmation.twig');
 
     }
 

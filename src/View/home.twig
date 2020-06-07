@@ -58,13 +58,13 @@
             <h3>Dernier chapitre en date publié</h3>
 
 
-            <div>
+
                 {% for article in articles %}
 
                     <p> {{ article.title }} <br>{{ article.content | raw }} </p>
 
                 {% endfor %}
-            </div>
+
         </section>
 
 
