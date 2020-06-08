@@ -168,6 +168,10 @@ img{
     border-radius: 5px;
 }
 
+.home-text{
+    margin: 0 auto;
+    max-width: 80%;
+}
 
 
 /*animated fading*/

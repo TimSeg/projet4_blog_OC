@@ -61,7 +61,7 @@ class CommentsController extends MainController
 
         }
 
-        return $this->twig->render('Error.twig');
+        return $this->twig->render('ErrorComments.twig');
 
     }
 

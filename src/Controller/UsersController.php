@@ -92,7 +92,7 @@ class UsersController extends MainController
 
             }
 
-            else echo 'adresse ou mot de passe invalide';
+            else echo '<h3 class = "warning">ERREUR : adresse ou mot de passe invalide </h3>';
 
         }
 
@@ -143,7 +143,7 @@ class UsersController extends MainController
 
 // check if mail already exists in database -> send to error page
             if ($this->post['email'] === $users['email']) {
-                return $this->twig->render('Error.twig');
+                return $this->twig->render('ErrorMail.twig');
             }
 // create new user
             ModelFactory::getModel('users')->createData([
