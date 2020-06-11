@@ -1,25 +1,55 @@
-<nav>
-    <ul>
+{% block content %}
 
-        {% block navbar %}
-        <li>
-            <a href="{{ url('home') }}" title="Home">
-                <i class="fas fa-home fa-fw fa-3x" aria-hidden="true"></i>
-            </a>
-        </li>
 
-        <li>
-            <a href= "{{ url('articles') }}" title="Tous les chapitres"><i class="fas fa-book-open"></i> Chapitres</a>
-        </li>
 
-            <li>
-                <a href= "{{ url('users!launch') }}" title="Connexion"><i class=""></i> Connexion/Administration </a>
-            </li>
 
-            <li>
-                <a href="{{ url('users!logout') }}" title="Déconnexion">Déconnexion</a>
-            </li>
-        {% endblock %}
+        <nav>
 
-    </ul>
-</nav>
+
+
+                {% if session.user.admin is defined %}
+
+                        <a class="nav-links" href="{{ url('Home') }}" title="Home"> Accueil </a>
+
+
+
+                        <a class="nav-links" href= "{{ url('Articles!launch') }}" title="Tous les chapitres"> Chapitres</a>
+
+
+
+                        <a class="nav-links" href= "{{ url('Users!adminredirect') }}" title="Administration"> Administration </a>
+
+
+
+                        <a class="nav-links" href="{{ url('Users!logout') }}" title="Déconnexion">Déconnexion</a>
+
+
+
+                {% else %}
+
+                        <a href="{{ url('Home') }}" title="Home"> Accueil </a>
+
+
+
+                        <a href= "{{ url('Articles!launch') }}" title="Tous les chapitres"> Chapitres</a>
+
+
+                        <a href= "{{ url('Users!launch') }}" title="Connexion"> Connexion </a>
+
+
+
+                {% endif %}
+
+
+
+
+
+
+
+
+
+        </nav>
+
+
+
+{% endblock %}

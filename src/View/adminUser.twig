@@ -12,7 +12,7 @@
 
         <fieldset>
             <legend><i class="fas fa-pen-square fa-fw fa-lg"></i>Vos nouvelles informations (seul votre nom sera affiché avec vos commentaires)</legend>
-            <form action="{{ url('users!useredit', {'id': session.users.id }) }}" method="post">
+            <form action="{{ url('Users!useredit', {'id': session.users.id }) }}" method="post">
 
 
                 <label for="name">Nom affiché</label>
@@ -32,9 +32,9 @@
 
             <section>
 
-                <h4>Pour supprimer votre compte ainsi que vos données personnelles, utilisez le bouton ci-dessous</h4>
+                <p>Pour supprimer votre compte ainsi que vos données personnelles, utilisez le bouton ci-dessous</p>
                 <p class="warning"> ATTENTION : toute suppression de compte est définitive</p>
-                <a href="{{ url("users!delete", {'id': id}) }}">
+                <a href="{{ url("Users!delete", {'id': id}) }}">
                     <button class="link-remove white" type="button">
                         <i class="fas fa-exclamation-triangle"></i> Supprimer mon compte utilisateur <i class="fas fa-exclamation-triangle"></i>
                     </button>

@@ -1,34 +1,80 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}Jean Forteroche - Billet simple pour l'Alaska{% endblock %}
+
 
 {% block description %}Blog - Jean Forteroche{% endblock %}
 
 {% block main %}
 
 
-    <!DOCTYPE html>
+        <h1>Jean Forteroche - Billet simple pour l'Alaska</h1>
 
-    <main id="home">
-        <section>
+        <article id="slideshow">
+
+
+
+            <figure class="slide fade">
+                <img src="images/alaska_1.jpg">
+            </figure>
+
+            <figure class="slide fade">
+                <img src="images/alaska_2.jpg">
+            </figure>
+
+            <figure class="slide fade">
+                <img src="images/alaska_3.jpg">
+            </figure>
+
+            <span id="prev-arrow"><i class="fas fa-chevron-left"></i></span>
+            <span id="next-arrow"><i class="fas fa-chevron-right"></i></span>
+
+            <!--monitoring dots-->
+            <div class="monitoring-dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+
+            <button type="button" id="stop-defil">Arrêter/démarrer le diaporama</button>
+
+        </article>
+
+
+
+
+
+
+        <section class="home-text">
             <h2>Bienvenue</h2>
 
             <p>Sur ce blog, vous pourrez suivre la publication du dernier roman de Jean Forteroche : Billet simple pour l'Alaska.</p>
-            <p>Pour accéder à l'ensemble des fonctionnalités : <a href="index.php?access=users">inscrivez-vous ici</a>.</p>
-            <p>Pour lire tous les chapitres depuis le début : <a href="index.php?access=articles">c'est ici</a> </p>
+            <p>Pour accéder à l'ensemble des fonctionnalités : <a href="index.php?access=Users">inscrivez-vous ici</a></p>
+            <p>Pour lire tous les chapitres depuis le début : <a href="index.php?access=Articles">c'est ici</a></p>
         </section>
 
-        <section>
-            <h2>Dernier chapitre en date publié</h2>
 
 
-            <div>
+        <section class="home-text">
+            <h3>Dernier chapitre en date publié</h3>
+
+
+
                 {% for article in articles %}
 
                     <p> {{ article.title }} <br>{{ article.content | raw }} </p>
 
                 {% endfor %}
-            </div>
+
         </section>
-    </main>
+
+
+
+
+
+    <script src="js/script.js"></script>
+    <script src="js/Slider.js"></script>
+
+
+
 {% endblock %}
+

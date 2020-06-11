@@ -1,0 +1,13 @@
+{% extends "layout/layout.twig" %}
+
+{% block main %}
+
+    <h1>Oups ! Une erreur est survenue</h1>
+
+
+    <h3 class="warning"> Vous avez essayé de commenter un chapitre sans vous connecter</h3>
+
+    <a class="back-links" href="{{ url('Users!launch') }}" > Page de connexion </a>
+
+
+{% endblock %}

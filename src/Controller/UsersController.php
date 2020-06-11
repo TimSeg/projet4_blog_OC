@@ -23,10 +23,13 @@ class UsersController extends MainController
 
 {
 
+
+
     /**
      * @return array
      */
     private $post_content = [];
+    protected $session = null;
 
 
     private function postDataUser()
@@ -80,24 +83,46 @@ class UsersController extends MainController
                 $name = $user['name'];
                 $id   = $user['id'];
 
+
                 if($user['admin'] === '1'){
-                    $this->redirect('admin');
+                    $this->redirect('Admin');
+
                 }
+                return $this->twig->render('Welcome.twig',['name' => $name, 'id' => $id]);
 
-                return $this->twig->render('adminUser.twig',['name' => $name, 'id' => $id]);
             }
-            else echo 'adresse ou mot de passe invalide';
+
+            else echo '<h3 class = "warning">ERREUR : adresse ou mot de passe invalide </h3>';
+
         }
 
-        //avoid password typing for admin when session is still open
 
-        elseif ($this->session['user']['admin'] === '1'){
 
-            $this->redirect('admin');
-        }
+        return $this->twig->render('Login.twig');
 
-        return $this->twig->render('login.twig');
     }
+
+
+//avoid password typing for admin when session is still open
+    public function adminredirectMethod()
+    {
+
+
+        $name = $this->session['user']['name'];
+        $id = $this->session['user']['id'];
+
+
+        if ($this->session['user']['admin'] === '1') {
+            $this->redirect('Admin');
+        } elseif ($this->session['user']['admin'] === '0') {
+            return $this->twig->render('AdminUser.twig',['name' => $name, 'id' => $id]);
+        }
+
+        return $this->twig->render('Error.twig');
+
+
+    }
+
 
 
 
@@ -118,10 +143,10 @@ class UsersController extends MainController
 
 // check if mail already exists in database -> send to error page
             if ($this->post['email'] === $users['email']) {
-                return $this->twig->render('error.twig');
+                return $this->twig->render('ErrorMail.twig');
             }
 // create new user
-            ModelFactory::getModel('Users')->createData([
+            ModelFactory::getModel('users')->createData([
                 'name' => $user['name'],
                 'email' => $user['email'],
                 'pass' => $pass_encrypted,
@@ -129,7 +154,7 @@ class UsersController extends MainController
             ]);
 
 // create session if new user has completed the form
-                $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
+                $user = ModelFactory::getModel('users')->readData($this->post['email'], 'email');
                 $this->sessionCreate(
                     $user['id'],
                     $user['name'],
@@ -137,7 +162,7 @@ class UsersController extends MainController
                     $user['pass'],
                     $user['admin']
                 );
-                $this->redirect('Articles');
+                return $this->twig->render('NewUser.twig');
 
             }
 
@@ -159,8 +184,8 @@ class UsersController extends MainController
         if (!empty($this->post)) {
             $this->postDataUser();
 
-            ModelFactory::getModel('Users')->updateData($this->session['user']['id'], $this->post_content);
-            $user = ModelFactory::getModel('Users')->readData($this->post['email'], 'email');
+            ModelFactory::getModel('users')->updateData($this->session['user']['id'], $this->post_content);
+            $user = ModelFactory::getModel('users')->readData($this->post['email'], 'email');
             $_SESSION['user'] = [];
             $this->sessionCreate(
                 $user['id'],
@@ -170,17 +195,11 @@ class UsersController extends MainController
                 $user['admin']
             );
 
-            $this->redirect('adminUser');
+            $this->redirect('AdminUser');
         }
 
     }
 
-
-    public function deleteforuserMethod()
-    {
-
-
-    }
 
 
 
@@ -191,20 +210,21 @@ class UsersController extends MainController
      * @throws SyntaxError
      */
 
-    // delete a user - only for admin
+    // delete a user
 
     public function deleteMethod()
     {
         $user_id = $this->get['id'];
-        $confirmed_id = ModelFactory::getModel('Comments')->listData($user_id, 'user_id');
+        $confirmed_id = ModelFactory::getModel('comments')->listData($user_id, 'user_id');
 
         if (!empty($confirmed_id))
         {
-            ModelFactory::getModel('Comments')->deleteData($this->get['id'], 'user_id');
+            ModelFactory::getModel('comments')->deleteData($this->get['id'], 'user_id');
         }
-        ModelFactory::getModel('Users')->deleteData($this->get['id']);
+        ModelFactory::getModel('users')->deleteData($this->get['id']);
 
-        $this->redirect('admin');
+        $this->sessionDestroy();
+        return $this->twig->render('DeleteConfirmation.twig');
 
     }
 
@@ -219,8 +239,7 @@ class UsersController extends MainController
     public function logoutMethod()
     {
         $this->sessionDestroy();
-        $this->redirect('home');
-
+        return $this->twig->render('LogoutConfirmation.twig');
 
     }
 

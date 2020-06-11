@@ -2,7 +2,8 @@
 
 namespace App\Model;
 
-use PDO;
+use App\Model\Factory\PdoFactory;
+use Pdo;
 
 /**
  * Class PdoDb
@@ -12,19 +13,19 @@ use PDO;
 class PdoDb
 {
     /**
-     * PDO Connection
-     * @var PDO
+     * Pdo Connection
+     * @var Pdo
      */
-    private $pdo = null;
+    private $Pdo;
 
     /**
      * PdoDb constructor
-     * Receive the PDO Connection & store it
-     * @param PDO $pdo
+     * Receive the Pdo Connection & store it
+     * @param Pdo $Pdo
      */
-    public function __construct(PDO $pdo)
+    public function __construct(Pdo $Pdo)
     {
-        $this->pdo = $pdo;
+        $this->Pdo = $Pdo;
     }
 
     /**
@@ -35,7 +36,7 @@ class PdoDb
      */
     public function getData(string $query, array $params = [])
     {
-        $PDOStatement = $this->pdo->prepare($query);
+        $PDOStatement = $this->Pdo->prepare($query);
         $PDOStatement->execute($params);
 
         return $PDOStatement->fetch();
@@ -49,8 +50,8 @@ class PdoDb
      */
     public function getAllData(string $query, array $params = [])
     {
-        $PDOStatement = $this->pdo->prepare($query);
-        $PDOStatement->execute($params);
+       $PDOStatement = $this->Pdo->prepare($query);
+       $PDOStatement->execute($params);
 
         return $PDOStatement->fetchAll();
     }
@@ -63,8 +64,8 @@ class PdoDb
      */
     public function setData(string $query, array $params = [])
     {
-        $PDOStatement = $this->pdo->prepare($query);
+        $req = PdoFactory::getPdo()->prepare($query);
+        return $req->execute($params);
 
-        return $PDOStatement->execute($params);
     }
 }

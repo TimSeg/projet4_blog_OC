@@ -12,6 +12,10 @@ use Twig\TwigFunction;
 
 class PhpAdditionalExtension extends AbstractExtension
 {
+
+    private $session = null;
+
+
     /**
      * Adds functions to Twig Views
      * @return array|TwigFunction[]
@@ -19,7 +23,7 @@ class PhpAdditionalExtension extends AbstractExtension
     public function getFunctions()
     {
         return array(
-            new TwigFunction('url', array($this, 'url'))
+            new TwigFunction('url', array($this, 'url')),
         );
     }
 
@@ -34,5 +38,6 @@ class PhpAdditionalExtension extends AbstractExtension
         $params['access'] = $page;
         return 'index.php?' . http_build_query($params);
     }
+
 }
 

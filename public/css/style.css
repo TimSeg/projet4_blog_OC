@@ -1,15 +1,296 @@
-body {
 
+body {
+    font-size: 62.5%;
+    margin: 0;
+    text-align: center;
+    padding-top: 100px;
+    background-color: #A9A9A9;
+}
+
+nav {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    top: 0;
+    left: 0;
+    background-color: #444099;
+    width: 100%;
+    height: 100px;
+    font-size: 1.5rem;
+    z-index: 3;
+}
+
+
+h1,
+h2,
+nav
+{
+    font-family: "Amatic SC", sans-serif;
+}
+
+p,
+legend{
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+}
+
+h1{
+    font-size: 3rem;
+    margin-top: 50px;
+}
+
+h2{
+    font-size: 1.9rem;
+}
+
+h3{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.4rem;
+}
+
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: snow;
+}
+
+.back-links{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.2rem;
+}
+
+
+footer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #444099;
+    height: 75px;
+    margin-top: 100px;
+
+}
+
+.footer-icon{
+    font-size: 2rem;
+}
+
+
+/* SLIDESHOW */
+
+
+#slideshow{
+    width: 100%;
+    margin-top: 100px;
+    justify-content: center;
+}
+
+
+img{
+    max-width: 80%;
+    display: block;
+    height: auto;
+    margin: 0 auto;
+}
+
+
+.fa-chevron-left{
+    position: relative;
+    left: 0;
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 10px 10px 10px;
+    z-index: 1;
+}
+
+.fa-chevron-right{
+    position: relative;
+    right: 0;
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 10px 10px 10px;
+    z-index: 1;
+}
+
+.fa-chevron-left:hover, .fa-chevron-right:hover{
+    background-color: rgba(0,0,0,1);
+}
+
+
+.slide{
+    display: block;
+}
+
+.slide-text{
+    color: black;
+    font-size: 15px;
+    padding: 8px 12px;
+    bottom: 8px;
     text-align: center;
 }
 
-main {
-    padding: 10px;
-    background-color: white;
+.monitoring-dots{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
-ul {
+.dot{
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    margin: 0 2px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+
+}
+
+#stop-defil{
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #297DB5;
+    padding: 0.3rem;
+    border-radius: 5px;
+}
+
+.home-text{
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+
+/*animated fading*/
+
+.fade{
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade{
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+@keyframes fade{
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+
+/* SLIDESHOW ENDS */
+
+
+/* ARTICLES */
+
+
+.link-to-article,
+.btn-report
+{
+    font-size: 1.1rem;
+    color: darkred;
+}
+
+
+.author-name{
+    color: midnightblue;
+    font-size: 1.2rem;
+}
+
+.comment-content{
+    font-style: italic;
+}
+
+.article-title{
+    font-size: 1.3rem;
+    text-decoration: underline;
+}
+
+.articles-reading{
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+
+
+/*ADMIN*/
+
+.admin-absolut{
     display: flex;
-    justify-content: space-evenly;
-    list-style: none;
+    justify-content: space-around;
+    font-size: 1rem;
+}
+
+
+.article-writing{
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+
+form label{
+    font-size: 1rem;
+}
+
+.admin-section table{
+    margin: 0 auto;
+    font-size: 1rem;
+}
+
+.table-line,
+.reported-comment-line{
+    padding: 3px;
+    border: 1px solid black;
+}
+
+.fa-times-circle,
+.fa-exclamation-triangle,
+.warning{
+ color: firebrick;
+}
+
+.fa-check{
+    color: darkgreen;
+}
+
+
+
+
+/*------BREAKPOINTS------*/
+
+/*pad screen*/
+
+@media screen and (min-width: 768px){
+
+
+
+
+
+}
+
+/*desktop screen*/
+
+@media screen and (min-width: 968px){
+
+
+
+
 }

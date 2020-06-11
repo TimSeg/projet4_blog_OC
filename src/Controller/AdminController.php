@@ -26,18 +26,24 @@ class AdminController extends MainController
         if ($this->session['user']['admin'] === '1') {
 
 
-            $articles = ModelFactory::getModel('Articles')->listData();
-            $comments = ModelFactory::getModel('Comments')->listData();
-            $users = ModelFactory::getModel('Users')->listData();
+            $articles = ModelFactory::getModel('articles')->listData();
+            $comments = ModelFactory::getModel('comments')->listData();
+            $users = ModelFactory::getModel('users')->listData();
 
-            return $this->twig->render("admin.twig", [
+
+
+
+            return $this->twig->render("Admin.twig", [
                 'articles' => $articles,
                 'comments' => $comments,
                 'users' => $users
             ]);
+
+
+
         }
 
-        $this->redirect('home.twig');
+        $this->redirect('Home.twig');
 
     }
 }

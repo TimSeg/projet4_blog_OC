@@ -22,10 +22,10 @@ class CommentsController extends MainController
      */
     public function launchMethod()
     {
-        $user = ModelFactory::getModel('Users')->listData();
-        $comments = ModelFactory::getModel('Comments')->listData();
+        $user = ModelFactory::getModel('users')->listData();
+        $comments = ModelFactory::getModel('comments')->listData();
 
-        return $this->render("fullArticle.twig", [
+        return $this->render("FullArticle.twig", [
             'comments' => $comments,
             'user'     => $user
         ]);
@@ -47,7 +47,9 @@ class CommentsController extends MainController
             $user_id    = $this->session['user']['id'] ;
             $article_id = $this->get['id'];
 
-            ModelFactory::getModel('Comments')->createData([
+
+
+            ModelFactory::getModel('comments')->createData([
                 'author'     => $author,
                 'content'    => $content,
                 'user_id'    => $user_id,
@@ -59,7 +61,7 @@ class CommentsController extends MainController
 
         }
 
-        return $this->twig->render('error.twig');
+        return $this->twig->render('ErrorComments.twig');
 
     }
 
@@ -76,15 +78,15 @@ class CommentsController extends MainController
         if (($this->session['user']['admin'] === '0') || ($this->session['user']['admin'] === '1')) {
 
            $comment_id        = $this->get['id'];
-           $comment           = ModelFactory::getModel('Comments')->readData($comment_id);
+           $comment           = ModelFactory::getModel('comments')->readData($comment_id);
            $article_id        = $comment['article_id'];
            $data['moderated'] = 1;
 
-           ModelFactory::getModel('Comments')->updateData($comment_id, $data);
+           ModelFactory::getModel('comments')->updateData($comment_id, $data);
 
-           $this->redirect('articles!read', ['id' => $article_id]);
+           $this->redirect('Articles!read', ['id' => $article_id]);
         }
-        return $this->twig->render('error.twig');
+        return $this->twig->render('Error.twig');
     }
 
 
@@ -92,14 +94,9 @@ class CommentsController extends MainController
     public function approvedMethod()
     {
 
-        $comment_id        = $this->get['id'];
-        $comment           = ModelFactory::getModel('Comments')->readData($comment_id);
-        $article_id        = $comment['article_id'];
-        $data['moderated'] = 0;
+        ModelFactory::getModel('comments')->updateData($this->get['id'], ['moderated' => 0]);
 
-        ModelFactory::getModel('Comments')->updateData($comment_id, $data);
-
-        $this->redirect('admin');
+        $this->redirect('Admin');
 
     }
 
@@ -114,9 +111,9 @@ class CommentsController extends MainController
      */
     public function deleteMethod()
     {
-        ModelFactory::getModel('Comments')->deleteData($this->get['id']);
+        ModelFactory::getModel('comments')->deleteData($this->get['id']);
 
-        $this->redirect('admin');
+        $this->redirect('Admin');
     }
 
 

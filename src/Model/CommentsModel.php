@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\Model\Factory\PDOFactory;
+
 
 /**
  * Class CommentsModel
@@ -11,6 +11,5 @@ use App\Model\Factory\PDOFactory;
  */
 class CommentsModel extends MainModel
 {
-
 
 }

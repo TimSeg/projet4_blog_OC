@@ -13,6 +13,10 @@ use Twig\Loader\FilesystemLoader;
  */
 abstract class MainController
 {
+
+
+
+
     /**
      * @var Environment|null
      */
@@ -31,14 +35,14 @@ abstract class MainController
     {
         $this->twig = new Environment(new FilesystemLoader('../src/View'), array('cache' => false,));
 
-
         $this->twig->addExtension(new PhpAdditionalExtension());
+
 
         $this->post     = filter_input_array(INPUT_POST);
         $this->get      = filter_input_array(INPUT_GET);
 
         $this->session = filter_var_array($_SESSION);
-
+        $this->twig->addGlobal('session', $this->session);
     }
 
     /**
@@ -79,6 +83,22 @@ abstract class MainController
     {
         return $this->twig->render($view, $params);
     }
+
+
+
+    /**
+     * @param string $message
+     * @param $type
+     */
+    public function setFlash(string $message, $type)
+    {
+        $_SESSION['flash'] = array(
+            'message' => $message,
+            'type'    => $type
+        );
+    }
+
+
 
 
     /**
