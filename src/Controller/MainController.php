@@ -14,9 +14,6 @@ use Twig\Loader\FilesystemLoader;
 abstract class MainController
 {
 
-
-
-
     /**
      * @var Environment|null
      */
@@ -60,18 +57,6 @@ abstract class MainController
 
 
     /**
-     * Redirection when comment is created
-     * @param string $value
-     * @param string $params
-     */
-    public function commentRedirect(string $value, string $params)
-    {
-        header('Location: index.php?id=' . $value . '&access=fullArticle' . $params);
-        exit;
-    }
-
-
-    /**
      * @param string $view
      * @param array $params
      * @return string
@@ -83,21 +68,6 @@ abstract class MainController
     {
         return $this->twig->render($view, $params);
     }
-
-
-
-    /**
-     * @param string $message
-     * @param $type
-     */
-    public function setFlash(string $message, $type)
-    {
-        $_SESSION['flash'] = array(
-            'message' => $message,
-            'type'    => $type
-        );
-    }
-
 
 
 

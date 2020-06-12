@@ -19,11 +19,13 @@
 
     {% for comment in comments %}
 
-    <p>Écrit par : <span class="author-name">{{ comment.author }}</span>, le <span>{{ comment.created_date }}</span></p>
-    <p class="comment-content">{{ comment.content | nl2br}}</p>
-        <a class="btn-report" href="{{ url('Comments!report',{'id': comment.id}, {'id':comment.post_id}) }}">Signaler le commentaire
+        <div class="full-comment">
+            <p>Écrit par : <span class="author-name">{{ comment.author }}</span>, le <span>{{ comment.created_date }}</span></p>
+            <p class="comment-content">{{ comment.content | nl2br}}</p>
+            <a class="btn-report" href="{{ url('Comments!report',{'id': comment.id}, {'id':comment.post_id}) }}">Signaler le commentaire
             <i class="fas fa-exclamation-triangle"></i>
-        </a>
+            </a>
+        </div>
     {% endfor %}
 </div>
 

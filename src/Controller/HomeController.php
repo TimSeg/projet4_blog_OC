@@ -30,5 +30,12 @@ class HomeController extends MainController
 
     }
 
+
+    //redirect to legal mentions
+    public function legalMethod()
+    {
+        return $this->twig->render('Legal.twig');
+    }
+
 }
 
