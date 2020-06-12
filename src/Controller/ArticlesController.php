@@ -39,6 +39,7 @@ class ArticlesController extends MainController
     }
 
 
+//read an article with associated comments
     public function readMethod()
     {
 
@@ -62,7 +63,7 @@ class ArticlesController extends MainController
     }
 
 
-
+//create a new article
     /**
      * @return string
      * @throws LoaderError
@@ -80,6 +81,8 @@ class ArticlesController extends MainController
         $this->redirect('Admin', ['createdArticle' => $createdArticle]);
     }
 
+
+    // delete an article
     /**
      * @return string
      * @throws LoaderError
@@ -103,7 +106,7 @@ class ArticlesController extends MainController
     }
 
 
-
+    //modify an article + display associated comments
     /**
      * @return string
      * @throws LoaderError

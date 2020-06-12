@@ -17,13 +17,9 @@ use Twig\Error\SyntaxError;
  */
 
 
-
-
 class UsersController extends MainController
 
 {
-
-
 
     /**
      * @return array
@@ -39,7 +35,7 @@ class UsersController extends MainController
 
     }
 
-
+//create session for admin ou user
     /**
      * @param int $id
      * @param string $name
@@ -59,7 +55,7 @@ class UsersController extends MainController
     }
 
 
-
+    //create session on login + redirect to admin or user navigation
     /**
      * @return string
      * @throws LoaderError
@@ -83,30 +79,20 @@ class UsersController extends MainController
                 $name = $user['name'];
                 $id   = $user['id'];
 
-
                 if($user['admin'] === '1'){
                     $this->redirect('Admin');
-
                 }
                 return $this->twig->render('Welcome.twig',['name' => $name, 'id' => $id]);
-
             }
-
             else echo '<h3 class = "warning">ERREUR : adresse ou mot de passe invalide </h3>';
-
         }
-
-
-
         return $this->twig->render('Login.twig');
-
     }
 
 
-//avoid password typing for admin when session is still open
+//avoid password typing for admin when session is still open and direct admin or user to correct personnal page
     public function adminredirectMethod()
     {
-
 
         $name = $this->session['user']['name'];
         $id = $this->session['user']['id'];
@@ -117,16 +103,12 @@ class UsersController extends MainController
         } elseif ($this->session['user']['admin'] === '0') {
             return $this->twig->render('AdminUser.twig',['name' => $name, 'id' => $id]);
         }
-
         return $this->twig->render('Error.twig');
-
-
     }
 
 
 
-
-
+    //create new user in database + session when sign-up form is complete
     public function createMethod()
     {
 
@@ -169,14 +151,15 @@ class UsersController extends MainController
     }
 
 
+
+
+    // update user personnal infos
     /**
      * @return string|mixed
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-
-    // update user personnal infos
 
     public function usereditMethod()
     {
@@ -202,15 +185,13 @@ class UsersController extends MainController
 
 
 
-
+    // delete a user
     /**
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-
-    // delete a user
 
     public function deleteMethod()
     {
@@ -229,7 +210,7 @@ class UsersController extends MainController
     }
 
 
-
+    //disconnect and close user/admin session
     /**
      * @return string
      * @throws LoaderError

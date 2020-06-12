@@ -31,6 +31,8 @@ class CommentsController extends MainController
         ]);
     }
 
+
+    //create new comment
     /**
      * @return string
      * @throws LoaderError
@@ -66,7 +68,7 @@ class CommentsController extends MainController
     }
 
 
-
+// report a comment
     /**
      * @return string
      * @throws LoaderError
@@ -91,6 +93,7 @@ class CommentsController extends MainController
 
 
 
+    // approve a reported comment (only for admin)
     public function approvedMethod()
     {
 
@@ -101,8 +104,7 @@ class CommentsController extends MainController
     }
 
 
-
-
+    // delete a comment (only for admin)
     /**
      * @return string
      * @throws LoaderError
