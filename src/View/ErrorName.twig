@@ -1,0 +1,12 @@
+{% extends "layout/layout.twig" %}
+
+{% block main %}
+
+    <h1>Oups ! Une erreur est survenue</h1>
+
+
+    <h3 class="warning"> Vous avez essayé d'entrer un nom déjà utilisé</h3>
+
+    <a class="back-links" href="{{ url('Users!launch') }}" > Retour à la page de connexion </a>
+
+{% endblock %}

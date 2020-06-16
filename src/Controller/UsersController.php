@@ -121,9 +121,16 @@ class UsersController extends MainController
 
 
             $pass_encrypted = password_hash($user['pass'], PASSWORD_DEFAULT);
+            $name = ModelFactory::getModel('users')->readData($this->post['name'],'name');
             $users = ModelFactory::getModel('users')->readData($this->post['email'], 'email');
 
+
 // check if mail already exists in database -> send to error page
+
+            if ($this->post['name'] === $name['name']) {
+                return $this->twig->render('ErrorName.twig');
+            }
+
             if ($this->post['email'] === $users['email']) {
                 return $this->twig->render('ErrorMail.twig');
             }
