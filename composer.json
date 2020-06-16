@@ -1,6 +1,6 @@
 {
     "name": "timseg/projet4_blog_oc",
-    "version": "0.2",
+    "version": "0.2.1",
     "description": "blog project for OpenClassrooms",
     "license": "MIT",
     "autoload": {
