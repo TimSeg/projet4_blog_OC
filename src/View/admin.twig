@@ -91,7 +91,7 @@
                             <td class="reported-comment-line">{{ comment.author }} </td>
                             <td class="reported-comment-line">{{ comment.content | nl2br }} </td>
                             <td class="reported-comment-line"><a href="{{ url('Comments!approved', {'id': comment.id}) }}">Valider<i class="fas fa-check"></i></a></td>
-                            <td class="reported-comment-line"><a class="btn-delete" href="#">Supprimer<i class="fas fa-times-circle fa-fw fa-lg"></i></a></td>
+                            <td class="reported-comment-line"><a class="btn-delete" href="{{ url('Comments!delete', {'id': comment.id}) }}">Supprimer<i class="fas fa-times-circle fa-fw fa-lg"></i></a></td>
                         </tr>
                     {% endif %}
                 {% endfor %}
